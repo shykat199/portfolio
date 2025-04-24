@@ -24,7 +24,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{route('dashboard')}}">
                             <i class="fas fa-braille me-3"></i>
                             <span>Dashboards</span>
                         </a>

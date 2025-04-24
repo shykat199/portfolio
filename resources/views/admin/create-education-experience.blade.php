@@ -12,13 +12,13 @@
         <div class="col-sm-12">
             <div class="page-title-box d-md-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center gap-2">
-                    <h4 class="page-title mb-0 me-3">Create Work Experience</h4>
+                    <h4 class="page-title mb-0 me-3">Create Education Experience</h4>
                 </div>
 
                 <div>
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="#">{{ env('APP_NAME') }}</a></li>
-                        <li class="breadcrumb-item active">Create Work Experience</li>
+                        <li class="breadcrumb-item active">Create Education Experience</li>
                     </ol>
                 </div>
             </div>
@@ -30,19 +30,19 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <form method="post" id="myForm" action="{{route('save-experience')}}">
+                        <form method="post" id="myForm" action="{{route('save-education')}}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Company Name</label>
-                                        <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Enter company name">
+                                        <label for="exampleInputEmail1" class="form-label">College Name</label>
+                                        <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Enter college name">
                                     </div>
                                     @error('name')<span class="text-danger">{{$message}}</span>  @enderror
 
                                     <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Company Position</label>
-                                        <input type="text" name="position" class="form-control" id="exampleInputPassword1" placeholder="Company Position">
+                                        <label for="exampleInputPassword1" class="form-label">Position/Degree</label>
+                                        <input type="text" name="position" class="form-control" id="exampleInputPassword1" placeholder="Position/Degree">
                                     </div>
                                     @error('position')<span class="text-danger">{{$message}}</span>  @enderror
 
@@ -61,10 +61,12 @@
                                         <label for="exampleInputEmail1" class="form-label">Start Date</label>
                                         <input type="date" name="start_date" class="form-control" id="exampleInputEmail1" placeholder="Enter start date">
                                     </div>
+                                    @error('start_date')<span class="text-danger">{{$message}}</span>  @enderror
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">End Date</label>
                                         <input type="date" name="end_date" class="form-control" id="exampleInputEmail1" placeholder="Enter end date">
                                     </div>
+                                    @error('start_date')<span class="text-danger">{{$message}}</span>  @enderror
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">

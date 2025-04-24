@@ -41,10 +41,22 @@ Route::middleware('auth')->group(function (){
 
     Route::controller(WorkExperienceController::class)->group(function (){
         Route::get('/work-experience','index')->name('work-experience');
+        Route::get('/create-experience','createExperience')->name('create-experience');
+        Route::post('/create-experience','saveExperience')->name('save-experience');
+        Route::get('/work-experience/{id}','editWorkExperience')->name('edit-experience');
+        Route::post('/update-experience/{id}','updateExperience')->name('update-experience');
+        Route::post('/update-experience-status','updateExperienceStatus')->name('update-experience-status');
+        Route::get('/delete-work-experience/{id}','deleteWorkExperience')->name('delete-experience');
     });
 
     Route::controller(EducationalExperienceController::class)->group(function (){
         Route::get('/my-education','index')->name('my-education');
+        Route::get('/create-education','createEducation')->name('create-education');
+        Route::post('/create-education','saveEducation')->name('save-education');
+        Route::get('/edit-education/{id}','editEducation')->name('edit-education');
+        Route::post('/update-education/{id}','updateEducation')->name('update-education');
+        Route::post('/update-education-status','updateEducationStatus')->name('update-education-status');
+        Route::get('/delete-work-education/{id}','deleteWorkEducation')->name('delete-education');
     });
 
     Route::controller(ProjectController::class)->group(function (){
