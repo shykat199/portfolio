@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="">
+<html lang="en" class="dark">
 
 
 <!-- Mirrored from html.themestransmit.com/minfo-tailwind/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 21 Apr 2025 17:44:35 GMT -->
