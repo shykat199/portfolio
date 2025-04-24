@@ -42,6 +42,10 @@
     <link rel="stylesheet" href="{{asset('assets/css/swiper-bundle.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.min.css')}}">
 
+    <script>
+        localStorage.setItem("theme", "dark");
+    </script>
+
 </head>
 
 <body class="relative custom_cursor">
