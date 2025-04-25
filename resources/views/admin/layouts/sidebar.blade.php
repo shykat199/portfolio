@@ -37,6 +37,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="{{route('resume-list')}}">
+                            <i class="fas fa-tasks me-3"></i>
+                            <span>Manage Resume</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="#mySkill" data-bs-toggle="collapse" role="button"
                            aria-expanded="false" aria-controls="sidebarEcommerce">
                             <i class="fas fa-tasks me-3"></i>

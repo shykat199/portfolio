@@ -10,6 +10,7 @@ use App\Models\SiteSetting;
 use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\EducationalExperienceController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ResumeController;
 
 Route::get('/',[IndexController::class,'index'])->name('home.index');
 Route::get('/project-list',[ProjectController::class,'index'])->name('project-list');
@@ -37,6 +38,15 @@ Route::middleware('auth')->group(function (){
 
     Route::controller(SiteSetting::class)->group(function (){
         Route::get('/site-setting','index')->name('site-setting');
+        Route::post('/site-setting','update-setting')->name('update-setting');
+    });
+
+    Route::controller(ResumeController::class)->group(function (){
+        Route::get('/resume-list','index')->name('resume-list');
+        Route::post('/create-resume','saveResume')->name('create-resume');
+        Route::post('/update-resume','updateResume')->name('update-resume');
+        Route::get('/delete-resume/{id}','deleteResume')->name('delete-resume');
+        Route::post('/update-resume-status','updateResumeStatus')->name('update-resume-status');
     });
 
     Route::controller(WorkExperienceController::class)->group(function (){
@@ -71,6 +81,6 @@ Route::middleware('auth')->group(function (){
 
     Route::controller(ContactController::class)->group(function (){
             Route::get('/contact-us','index')->name('contact-us');
-        });
+    });
 
 });
