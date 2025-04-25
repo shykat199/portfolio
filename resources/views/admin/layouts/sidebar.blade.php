@@ -29,6 +29,12 @@
                             <span>Dashboards</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('site-setting')}}">
+                            <i class="fas fa-tasks me-3"></i>
+                            <span>Site Settings</span>
+                        </a>
+                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#mySkill" data-bs-toggle="collapse" role="button"
@@ -83,14 +89,14 @@
                         <div class="collapse " id="projectList">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a href="{{route('my-project')}}" class="nav-link ">Project List</a>
+                                    <a href="{{route('my-projects')}}" class="nav-link ">Project List</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('contact-us')}}">
+                        <a class="nav-link" href="#">
                             <i class="fas fa-tasks me-3"></i>
                             <span>Contact Me</span>
                         </a>
@@ -100,12 +106,6 @@
                         <a class="nav-link" href="#">
                             <i class="fas fa-tasks me-3"></i>
                             <span>Section Settings</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('site-setting')}}">
-                            <i class="fas fa-tasks me-3"></i>
-                            <span>Site Settings</span>
                         </a>
                     </li>
 

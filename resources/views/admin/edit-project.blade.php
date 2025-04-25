@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title','Create Experience')
+@section('title','Update Experience')
 
 @push('style')
     <link href="{{asset('admin/assets/css/quill.snow.css')}}" rel="stylesheet" />
@@ -46,13 +46,13 @@
         <div class="col-sm-12">
             <div class="page-title-box d-md-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center gap-2">
-                    <h4 class="page-title mb-0 me-3">Create Project</h4>
+                    <h4 class="page-title mb-0 me-3">Update Project</h4>
                 </div>
 
                 <div>
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="#">{{ env('APP_NAME') }}</a></li>
-                        <li class="breadcrumb-item active">Create Project</li>
+                        <li class="breadcrumb-item active">Update Project</li>
                     </ol>
                 </div>
             </div>
@@ -64,19 +64,19 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <form method="post" id="myForm" action="{{route('save-project')}}" enctype="multipart/form-data">
+                        <form method="post" id="myForm" action="{{route('update-project',$project->id)}}" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Project Name</label>
-                                        <input type="text" name="name" value="{{old('name')}}" class="form-control" id="exampleInputEmail1" placeholder="Enter project name">
+                                        <input type="text" name="name" value="{{$project->title}}" class="form-control" id="exampleInputEmail1" placeholder="Enter project name">
                                     </div>
                                     @error('name')<span class="text-danger">{{$message}}</span>  @enderror
 
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Slug</label>
-                                        <input type="text" readonly value="{{old('slug')}}" name="slug" class="form-control" id="exampleInputPassword1" placeholder="Slug">
+                                        <input type="text" readonly value="{{$project->slug}}" name="slug" class="form-control" id="exampleInputPassword1" placeholder="Slug">
                                     </div>
                                     @error('slug')<span class="text-danger">{{$message}}</span>  @enderror
 
@@ -84,7 +84,9 @@
                                         <label class="form-label" for="exampleFormControlSelect1">Tech Stack</label> <br>
                                         <select name="tech_stack[]" class="form-select select2-without-search" multiple="multiple" id="exampleFormControlSelect1">
                                             @foreach($skills as $skill)
-                                                <option value="{{$skill->id}}">{{$skill->name}}</option>
+                                                <option value="{{ $skill->id }}" {{ in_array($skill->id, $selectedSkills) ? 'selected' : '' }}>
+                                                    {{ $skill->name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -93,8 +95,8 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlSelect1">Status</label>
                                         <select name="status" class="form-select" id="exampleFormControlSelect1">
-                                            <option value="{{ACTIVE_STATUS}}">Active</option>
-                                            <option value="{{INACTIVE_STATUS}}">Inactive</option>
+                                            <option {{$project->status == ACTIVE_STATUS ?'selected':''}} value="{{ACTIVE_STATUS}}">Active</option>
+                                            <option {{$project->status == INACTIVE_STATUS ?'selected':''}} value="{{INACTIVE_STATUS}}">Inactive</option>
                                         </select>
                                     </div>
                                     @error('status')<span class="text-danger">{{$message}}</span>  @enderror
@@ -102,12 +104,12 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="live_url" class="form-label">Live Url</label>
-                                            <input type="text" value="{{ old('live_url') }}" name="live_url" class="form-control" id="live_url" placeholder="Live Url">
+                                            <input type="text" value="{{ $project->live_url }}" name="live_url" class="form-control" id="live_url" placeholder="Live Url">
                                         </div>
 
                                         <div class="col-md-6 mb-3">
                                             <label for="repo_url" class="form-label">Repository Url</label>
-                                            <input type="text" value="{{ old('repo_url') }}" name="repo_url" class="form-control" id="repo_url" placeholder="Repository Url">
+                                            <input type="text" value="{{ $project->repo_url }}" name="repo_url" class="form-control" id="repo_url" placeholder="Repository Url">
                                         </div>
                                     </div>
 
@@ -115,7 +117,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="image" class="form-label">Featured Image</label>
-                                        <input type="file" name="img" class="dropify" id="img" accept="image/*">
+                                        <input type="file" name="img" class="dropify" id="img" data-default-file="{{asset('storage/'.$project->img)}}" accept="image/*">
                                         @error('img')<span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
                                 </div>
@@ -130,44 +132,35 @@
                                     @error('description')<span class="text-danger">{{ $message }}</span>@enderror
                                 </div>
 
-                                <input type="hidden" name="description" value="{{old('description')}}" id="contentInput">
-
-                            </div>
-                            <div class="row">
-
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="image" class="form-label">Image 1</label>
-                                        <input type="file" name="image[]" class="dropify" id="img" accept="image/*">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="image" class="form-label">Image 2</label>
-                                        <input type="file" name="image[]" class="dropify" id="img" accept="image/*">
-                                    </div>
-                                </div>
+                                <input type="hidden" name="description" value="{{$project->description}}" id="contentInput">
 
                             </div>
 
                             <div class="row">
+                                @for($i = 1; $i < 5; $i++)
 
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="image" class="form-label">Image 3</label>
-                                        <input type="file" name="image[]" class="dropify" id="img" accept="image/*">
+                                    @php
+                                        $existingImagePath = $existingImages[$i] ?? null;
+                                    @endphp
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="image_{{ $i }}" class="form-label">Image {{ $i + 1 }}</label>
+                                            <input
+                                                type="file"
+                                                name="image[{{ $i }}]"
+                                                class="dropify"
+                                                id="image_{{ $i }}"
+                                                accept="image/*"
+                                                @if($existingImagePath)
+                                                    data-default-file="{{ asset('storage/' . $existingImagePath) }}"
+                                                @endif
+                                            >
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="image" class="form-label">Image 4</label>
-                                        <input type="file" name="image[]" class="dropify" id="img" accept="image/*">
-                                    </div>
-                                </div>
-
+                                @endfor
                             </div>
+
 
                             <button type="submit" class="btn btn-primary">Create</button>
 
@@ -199,6 +192,11 @@
                 ]
             }
         });
+
+
+        const dbContent = `{!! $project->description ?? '' !!}`;
+
+        quill.root.innerHTML = dbContent;
 
         document.getElementById('myForm').addEventListener('submit', function(e) {
             const content = quill.root.innerHTML;

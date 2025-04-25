@@ -60,7 +60,13 @@ Route::middleware('auth')->group(function (){
     });
 
     Route::controller(ProjectController::class)->group(function (){
-        Route::get('/my-project','index')->name('my-project');
+        Route::get('/my-projects','projectList')->name('my-projects');
+        Route::get('/create-project','createProject')->name('create-project');
+        Route::post('/create-project','saveProject')->name('save-project');
+        Route::get('/edit-project/{id}','editProject')->name('edit-project');
+        Route::post('/update-project/{id}','updateProject')->name('update-project');
+        Route::post('/update-project-status','updateProjectStatus')->name('update-project-status');
+        Route::get('/delete-work-project/{id}','deleteWorkProject')->name('delete-project');
     });
 
     Route::controller(ContactController::class)->group(function (){
