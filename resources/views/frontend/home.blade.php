@@ -12,6 +12,7 @@
                 <i class="fal fa-home text-theme"></i>
                 INTRODUCE
             </div>
+{{--            @dd($settingData)--}}
             <div class="items-center gap-6 hero-content md:flex xl:gap-10">
                 <div class="text-content pt-7 lg:pt-8 max-lg:max-w-[30rem]">
                     <h1
@@ -19,9 +20,7 @@
                         I Craft The <br>
                         <span class="text-theme">Digital Landscape</span>
                     </h1>
-                    <p>
-                        I am a <span class="font-medium text-black dark:text-white/90">Frontend Developer</span> at heart and, i create features that are best suited for the job at hand.
-                    </p>
+                    <p>{!! $settingData['about_me1'] ?? '' !!}</p>
                     <ul class="flex items-center mt-4 -mx-3 lg:mt-5 *:flex *:items-center *:mx-3 *:text-regular">
                         <li>
                             <i class="mr-2 fal fa-check-double text-theme"></i>
@@ -34,8 +33,7 @@
                     </ul>
                     <ul class="mt-7 buttons">
                         <li data-scroll-nav="8">
-                            <a href="#contact"
-                               class="btn-theme inline-flex items-center gap-2 bg-theme py-4 md:py-4.5 lg:px-9 px-7 rounded-4xl leading-none transition-all duration-300 hover:shadow-theme_shadow text-white font-medium text-[15px] md:text-base">
+                            <a href="#contact" class="btn-theme inline-flex items-center gap-2 bg-theme py-4 md:py-4.5 lg:px-9 px-7 rounded-4xl leading-none transition-all duration-300 hover:shadow-theme_shadow text-white font-medium text-[15px] md:text-base">
                                 <i class="fal fa-paper-plane"></i>
                                 HIRE ME
                             </a>
@@ -44,14 +42,17 @@
 
                 </div>
                 <div class="hero-image flex-[0_0_20.3rem] max-md:hidden">
-                    <img
-                        src="assets/img/hero-img-1.png"
-                        class="dark:hidden"
-                        alt="Hero Image - Light Mode">
-                    <img
-                        src="assets/img/hero-img-2.png"
-                        class="hidden dark:block"
-                        alt="Hero Image - Dark Mode">
+{{--                    <img src="{{asset('img/pngwing.png')}}" class="hidden dark:block" alt="Hero Image - Dark Mode">--}}
+                    <lottie-player
+                        src="{{asset('img/coder-animation.json')}}"
+{{--                        src="https://assets10.lottiefiles.com/packages/lf20_pprxh53t.json"--}}
+                        background="transparent"
+                        speed="1"
+                        style="width: 300px; height: 300px;"
+                        loop
+                        autoplay>
+                    </lottie-player>
+
                 </div>
             </div>
         </div>
@@ -74,78 +75,57 @@
                     class="title text-[32px] md:text-4xl lg:text-5xl font-extralight text-black dark:text-white leading-1.27">
                     About <span class="font-semibold text-theme">Me</span>
                 </h2>
-                <p class="max-w-2xl mt-4 md:mt-6 subtitle">
-                    Hi, my name is <span class="text-black dark:text-white">Brown Reddick</span> and I began using WordPress when first began. spent most of my waking hours for the last ten years designing, programming and operating <span class="text-black dark:text-white"> WordPress</span> sites go beyond with exclusive designer.
-                </p>
+
+                <p class="max-w-2xl mt-4 md:mt-6 subtitle">{!! $settingData['about_me2'] ?? '' !!}</p>
+
             </div>
             <div class="mt-6 section-content">
-                <div class="inline-flex flex-wrap items-center gap-2 mb-5 text-sm md:gap-4 *:inline-block *:px-3.5 *:py-2 *:transition *:duration-300 *:border *:border-dashed *:text-black dark:*:text-white/70 *:border-platinum dark:*:border-greyBlack *:rounded-3xl md:*:px-5 md:*:py-2">
-                    <a href="#"
-                       class="hover:text-theme dark:hover:text-white">
-                        HTML5 & CSS3 (94%)
-                    </a>
-                    <a href="#"
-                       class="hover:text-theme dark:hover:text-white">
-                        Bootstrap (98%)
-                    </a>
-                    <a href="#"
-                       class="hover:text-theme dark:hover:text-white">
-                        TailwindCSS (90%)
-                    </a>
-                </div>
 
                 <ul class="grid mt-4 mb-10 text-sm lg:mt-6 md:grid-cols-2 gap-x-8 gap-y-3 *:flex *:items-center">
                     <li>
                         <span class="flex-[0_0_6rem]">Phone</span>
                         <span class="flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white">+(2) 870 174 302 </span>
+                        <span class="text-black dark:text-white">{{$settingData['phone'] ?? ''}}</span>
                     </li>
                     <li>
                         <span class="flex-[0_0_6rem]">Email</span>
                         <span class="flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white">info@example.com</span>
+                        <span class="text-black dark:text-white">{{$settingData['email'] ?? ''}}</span>
                     </li>
                     <li>
-                        <span class="flex-[0_0_6rem]">Skype</span>
+                        <span class="flex-[0_0_6rem]">Linkedin</span>
                         <span class="flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white">brown@com</span>
+                        <span class="text-black dark:text-white">{{$settingData['linkedin'] ?? ''}}</span>
                     </li>
                     <li>
                         <span class="flex-[0_0_6rem]">Github</span>
                         <span class="flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white">github.com/user</span>
+                        <span class="text-black dark:text-white">{{$settingData['git'] ?? ''}}</span>
                     </li>
                     <li>
                         <span class="flex-[0_0_6rem]">Language</span>
                         <span class="flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white">English, Dutch, Spanish</span>
+                        <span class="text-black dark:text-white">{{$settingData['language'] ?? ''}}</span>
+                    </li>
+                    <li>
+                        <span class="flex-[0_0_6rem]">Hobby</span>
+                        <span class="flex-[0_0_2rem]">:</span>
+                        <span class="text-black dark:text-white">{{$settingData['hobby'] ?? ''}}</span>
                     </li>
                 </ul>
 
                 <ul class="grid grid-cols-2 gap-6 counters md:grid-cols-4 xl:gap-8">
                     <li>
                         <div class="mb-1 text-2xl font-semibold md:text-3xl number text-theme 2xl:text-4xl">
-                            <span>185</span>+
+                            <span>{{$settingData['experience'] ?? 0}}</span>+
                         </div>
                         <div class="text-sm">Years Of Experience</div>
                     </li>
                     <li>
                         <div class="mb-1 text-2xl font-semibold md:text-3xl number text-theme 2xl:text-4xl">
-                            <span>12</span>+
+                            <span>{{$settingData['project_completed'] ?? 0}}</span>+
                         </div>
                         <div class="text-sm">Handled Projects</div>
-                    </li>
-                    <li>
-                        <div class="mb-1 text-2xl font-semibold md:text-3xl number text-theme 2xl:text-4xl">
-                            <span>05</span>+
-                        </div>
-                        <div class="text-sm">Open Source Libraries</div>
-                    </li>
-                    <li>
-                        <div class="mb-1 text-2xl font-semibold md:text-3xl number text-theme 2xl:text-4xl">
-                            <span>18</span>
-                        </div>
-                        <div class="text-sm">Awards Won</div>
                     </li>
                 </ul>
 
@@ -176,112 +156,108 @@
                 </p>
             </div>
 
-            <div class="mt-12 skills-slider xl:mt-16">
-                <div class="swiper">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
 
-                    <div class="swiper-wrapper *:space-y-5 *:text-center">
-                        <div class="swiper-slide">
-                            <div class="text-center icon">
-                                <img src="assets/img/skill/figma.svg" class="dark:grayscale" alt="Figma">
+                <div class="swiper-slide1">
+                    <div class="icon mb-4">
+                        <img src="assets/img/skill/figma.svg" class="dark:grayscale mx-auto" alt="Figma">
+                    </div>
+                    <div class="progressCircle mb-4">
+                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
+                             data-percent="90" data-circlefill="#00BC91" data-circleempty="#777777">
+                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
                             </div>
-                            <div class="progressCircle">
-                                <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                                     data-percent="90" data-circlefill="#00BC91" data-circleempty="#777777">
-                                    <div
-                                        class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-black dark:text-white name">Figma</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="text-center icon">
-                                <img src="assets/img/skill/webflow.svg" class="dark:grayscale" alt="webflow">
-                            </div>
-                            <div class="progressCircle">
-                                <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                                     data-percent="85" data-circlefill="#00BC91" data-circleempty="#777777">
-                                    <div
-                                        class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-black dark:text-white name">Weblfow</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="text-center icon">
-                                <img src="assets/img/skill/tailwind.svg" class="dark:grayscale" alt="TailwindCSS">
-                            </div>
-                            <div class="progressCircle">
-                                <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                                     data-percent="90" data-circlefill="#00BC91" data-circleempty="#777777">
-                                    <div
-                                        class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-black dark:text-white name">Tailwind</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="text-center icon">
-                                <img src="assets/img/skill/html.svg" class="dark:grayscale" alt="HTML5">
-                            </div>
-                            <div class="progressCircle">
-                                <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                                     data-percent="95" data-circlefill="#00BC91" data-circleempty="#777777">
-                                    <div
-                                        class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-black dark:text-white name">HTML5</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="text-center icon">
-                                <img src="assets/img/skill/css.svg" class="dark:grayscale" alt="CSS3">
-                            </div>
-                            <div class="progressCircle">
-                                <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                                     data-percent="95" data-circlefill="#00BC91" data-circleempty="#777777">
-                                    <div
-                                        class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-black dark:text-white name">CSS3</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="text-center icon">
-                                <img src="assets/img/skill/js.svg" class="dark:grayscale" alt="JavaScript">
-                            </div>
-                            <div class="progressCircle">
-                                <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                                     data-percent="75" data-circlefill="#00BC91" data-circleempty="#777777">
-                                    <div
-                                        class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="font-light text-black dark:text-white name">JavaScript</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="text-center icon">
-                                <img src="assets/img/skill/jquery.svg" class="dark:grayscale" alt="jQuery">
-                            </div>
-                            <div class="progressCircle">
-                                <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                                     data-percent="70" data-circlefill="#00BC91" data-circleempty="#777777">
-                                    <div
-                                        class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-black dark:text-white name">jQuery</div>
                         </div>
                     </div>
-
+                    <div class="text-black dark:text-white name">Figma</div>
                 </div>
+
+                <div class="swiper-slide1">
+                    <div class="icon mb-4">
+                        <img src="assets/img/skill/webflow.svg" class="dark:grayscale mx-auto" alt="Webflow">
+                    </div>
+                    <div class="progressCircle mb-4">
+                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
+                             data-percent="85" data-circlefill="#00BC91" data-circleempty="#777777">
+                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-black dark:text-white name">Webflow</div>
+                </div>
+
+                <div class="swiper-slide1">
+                    <div class="icon mb-4">
+                        <img src="assets/img/skill/tailwind.svg" class="dark:grayscale mx-auto" alt="TailwindCSS">
+                    </div>
+                    <div class="progressCircle mb-4">
+                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
+                             data-percent="90" data-circlefill="#00BC91" data-circleempty="#777777">
+                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-black dark:text-white name">Tailwind</div>
+                </div>
+
+                <div class="swiper-slide1">
+                    <div class="icon mb-4">
+                        <img src="assets/img/skill/html.svg" class="dark:grayscale mx-auto" alt="HTML5">
+                    </div>
+                    <div class="progressCircle mb-4">
+                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
+                             data-percent="95" data-circlefill="#00BC91" data-circleempty="#777777">
+                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-black dark:text-white name">HTML5</div>
+                </div>
+
+                <div class="swiper-slide1">
+                    <div class="icon mb-4">
+                        <img src="assets/img/skill/css.svg" class="dark:grayscale mx-auto" alt="CSS3">
+                    </div>
+                    <div class="progressCircle mb-4">
+                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
+                             data-percent="95" data-circlefill="#00BC91" data-circleempty="#777777">
+                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-black dark:text-white name">CSS3</div>
+                </div>
+
+                <div class="swiper-slide1">
+                    <div class="icon mb-4">
+                        <img src="assets/img/skill/js.svg" class="dark:grayscale mx-auto" alt="JavaScript">
+                    </div>
+                    <div class="progressCircle mb-4">
+                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
+                             data-percent="75" data-circlefill="#00BC91" data-circleempty="#777777">
+                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-black dark:text-white name">JavaScript</div>
+                </div>
+
+                <div class="swiper-slide1">
+                    <div class="icon mb-4">
+                        <img src="assets/img/skill/jquery.svg" class="dark:grayscale mx-auto" alt="jQuery">
+                    </div>
+                    <div class="progressCircle mb-4">
+                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
+                             data-percent="70" data-circlefill="#00BC91" data-circleempty="#777777">
+                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-black dark:text-white name">jQuery</div>
+                </div>
+
             </div>
+
             <!-- Slider Controls Start -->
             <div
                 class="skills-slider-navigation flex justify-center items-center gap-2.5 mt-12 md:absolute md:top-16 lg:top-20 md:right-8 lg:right-13">
