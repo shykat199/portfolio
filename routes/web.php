@@ -6,7 +6,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SkillController;
-use App\Models\SiteSetting;
+use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\EducationalExperienceController;
 use App\Http\Controllers\ContactController;
@@ -36,9 +36,9 @@ Route::middleware('auth')->group(function (){
        Route::post('/update-skill','updateSkill')->name('update-skill');
     });
 
-    Route::controller(SiteSetting::class)->group(function (){
+    Route::controller(SiteSettingController::class)->group(function (){
         Route::get('/site-setting','index')->name('site-setting');
-        Route::post('/site-setting','update-setting')->name('update-setting');
+        Route::post('/site-setting','update')->name('update-setting');
     });
 
     Route::controller(ResumeController::class)->group(function (){

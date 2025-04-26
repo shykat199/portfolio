@@ -91,7 +91,7 @@
 @endsection
 
 @push('script')
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script src="{{asset('admin/assets/js/quill.js')}}"></script>
     <script>
         const quill = new Quill('#editor', {
             theme: 'snow',
