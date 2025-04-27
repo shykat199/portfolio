@@ -62,6 +62,7 @@ class ResumeController extends Controller
 
         DB::table('resumes')->insert([
             'file' => $filePath,
+            'status' => INACTIVE_STATUS,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

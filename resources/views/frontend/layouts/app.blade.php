@@ -41,6 +41,9 @@
     <link rel="stylesheet" href="{{asset('assets/css/cdheadline.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/swiper-bundle.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.min.css')}}">
+
+    @stack('front-style')
+
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <script>
@@ -70,6 +73,10 @@
 </div>
 <!-- App Preloader End -->
 
+@php
+    $settingData = getSettingsData();
+    $latestResume = DB::table('resumes')->where('status',ACTIVE_STATUS)->orderByDesc('id')->first();;
+@endphp
 
 <!-- App Start -->
 <div class="relative pt-10 minfo__app max-xl:pt-20">
@@ -142,6 +149,7 @@
 <script src="{{asset('assets/js/circle-progress.min.j')}}s"></script>
 <script src="{{asset('assets/js/script.js')}}"></script>
 <script src="{{asset('assets/js/theme-mode.js')}}"></script>
+@stack('front-script')
 <!-- Js Library End -->
 </body>
 

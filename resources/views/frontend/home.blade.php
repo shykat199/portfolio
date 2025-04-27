@@ -2,6 +2,15 @@
 
 @section('title','Home')
 
+@push('front-style')
+    <style>
+        .progress-circle {
+            transition: stroke-dashoffset 1.5s ease-out;
+        }
+    </style>
+@endpush
+
+
 @section('content')
     <!-- Hero/Introduction Section Start -->
     <div data-scroll-index="0" id="home">
@@ -156,134 +165,48 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            @php
+                $skills = \App\Models\Skill::where('status',ACTIVE_STATUS)->get();
+            @endphp
 
-                <div class="swiper-slide1">
-                    <div class="icon mb-4">
-                        <img src="assets/img/skill/figma.svg" class="dark:grayscale mx-auto" alt="Figma">
-                    </div>
-                    <div class="progressCircle mb-4">
-                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                             data-percent="90" data-circlefill="#00BC91" data-circleempty="#777777">
-                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 text-center">
+                @foreach ($skills as $skill)
+                    <div class="group">
+                        <div class="flex flex-col items-center p-2 sm:p-4 hover:transform hover:scale-105 transition-all">
+                            <!-- Skill Logo -->
+                            <div class="mb-3 w-16 h-16 sm:w-16 sm:h-16 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                                <img src="{{ asset('storage/'.$skill->logo) }}" alt="{{ $skill->name }}" class="w-14 h-14 sm:w-10 sm:h-10">
                             </div>
+
+                            <!-- Circular Progress -->
+                            <div class="relative w-20 h-20 sm:w-24 sm:h-24 overflow-visible">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                    <!-- Background Circle -->
+                                    <circle cx="50" cy="50" r="47" stroke-width="6" fill="none"/>
+                                    <!-- Progress Circle -->
+                                    <circle cx="50" cy="50" r="47"
+                                            stroke="#00BC91"
+                                            stroke-width="6"
+                                            fill="none"
+                                            stroke-linecap="round"
+                                            stroke-dasharray="295"
+                                            stroke-dashoffset="295"
+                                            data-percentage="{{ $skill->percentage }}"
+                                            class="progress-circle"/>
+                                </svg>
+                                <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-base sm:text-lg font-semibold text-gray-800 dark:text-white">
+                                    {{ $skill->percentage }}%
+                                </span>
+                            </div>
+
+                            <!-- Skill Name -->
+                            <h3 class="text-base sm:text-lg font-medium text-gray-800 dark:text-white mt-2">{{ $skill->name }}</h3>
                         </div>
                     </div>
-                    <div class="text-black dark:text-white name">Figma</div>
-                </div>
-
-                <div class="swiper-slide1">
-                    <div class="icon mb-4">
-                        <img src="assets/img/skill/webflow.svg" class="dark:grayscale mx-auto" alt="Webflow">
-                    </div>
-                    <div class="progressCircle mb-4">
-                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                             data-percent="85" data-circlefill="#00BC91" data-circleempty="#777777">
-                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-black dark:text-white name">Webflow</div>
-                </div>
-
-                <div class="swiper-slide1">
-                    <div class="icon mb-4">
-                        <img src="assets/img/skill/tailwind.svg" class="dark:grayscale mx-auto" alt="TailwindCSS">
-                    </div>
-                    <div class="progressCircle mb-4">
-                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                             data-percent="90" data-circlefill="#00BC91" data-circleempty="#777777">
-                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-black dark:text-white name">Tailwind</div>
-                </div>
-
-                <div class="swiper-slide1">
-                    <div class="icon mb-4">
-                        <img src="assets/img/skill/html.svg" class="dark:grayscale mx-auto" alt="HTML5">
-                    </div>
-                    <div class="progressCircle mb-4">
-                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                             data-percent="95" data-circlefill="#00BC91" data-circleempty="#777777">
-                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-black dark:text-white name">HTML5</div>
-                </div>
-
-                <div class="swiper-slide1">
-                    <div class="icon mb-4">
-                        <img src="assets/img/skill/css.svg" class="dark:grayscale mx-auto" alt="CSS3">
-                    </div>
-                    <div class="progressCircle mb-4">
-                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                             data-percent="95" data-circlefill="#00BC91" data-circleempty="#777777">
-                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-black dark:text-white name">CSS3</div>
-                </div>
-
-                <div class="swiper-slide1">
-                    <div class="icon mb-4">
-                        <img src="assets/img/skill/js.svg" class="dark:grayscale mx-auto" alt="JavaScript">
-                    </div>
-                    <div class="progressCircle mb-4">
-                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                             data-percent="75" data-circlefill="#00BC91" data-circleempty="#777777">
-                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-black dark:text-white name">JavaScript</div>
-                </div>
-
-                <div class="swiper-slide1">
-                    <div class="icon mb-4">
-                        <img src="assets/img/skill/jquery.svg" class="dark:grayscale mx-auto" alt="jQuery">
-                    </div>
-                    <div class="progressCircle mb-4">
-                        <div class="relative w-32 h-32 mx-auto circle md:w-40 md:h-40"
-                             data-percent="70" data-circlefill="#00BC91" data-circleempty="#777777">
-                            <div class="absolute inset-0 text-2xl font-semibold text-black dark:text-white label flex-center">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-black dark:text-white name">jQuery</div>
-                </div>
-
+                @endforeach
             </div>
 
-            <!-- Slider Controls Start -->
-            <div
-                class="skills-slider-navigation flex justify-center items-center gap-2.5 mt-12 md:absolute md:top-16 lg:top-20 md:right-8 lg:right-13">
-                <button
-                    class="transition border rounded-full button-prev w-11 h-11 group border-platinum dark:border-greyBlack flex-center hover:bg-theme hover:border-theme"
-                    aria-label="Previous">
-                    <svg width="18" height="10" viewBox="0 0 18 10" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                              d="M18 5.08006C18 4.77812 17.7121 4.5334 17.3571 4.5334L2.19486 4.5334L6.07553 0.933214C6.32659 0.719715 6.32659 0.373628 6.07553 0.160126C5.82448 -0.0533767 5.41745 -0.0533766 5.1664 0.160126L0.188289 4.69352C-0.0627618 4.90702 -0.0627618 5.2531 0.188289 5.4666L5.33115 9.83986C5.5822 10.0534 5.98923 10.0534 6.24028 9.83986C6.49134 9.62637 6.49134 9.28028 6.24028 9.06678L2.19486 5.62672L17.3571 5.62671C17.7121 5.62671 18 5.38199 18 5.08006Z"
-                              class="fill-[#A0A0A0] group-hover:fill-white" />
-                    </svg>
-                </button>
-                <div class="text-sm font-light text-center text-black dark:text-white counter w-7"></div>
-                <button
-                    class="transition border rounded-full button-next w-11 h-11 group border-platinum dark:border-greyBlack flex-center hover:bg-theme hover:border-theme"
-                    aria-label="Next">
-                    <svg width="18" height="10" viewBox="0 0 18 10" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                              d="M4.44113e-07 4.91994C4.17717e-07 5.22187 0.287871 5.4666 0.642857 5.4666L15.8051 5.4666L11.9245 9.06678C11.6734 9.28028 11.6734 9.62637 11.9245 9.83987C12.1755 10.0534 12.5826 10.0534 12.8336 9.83987L17.8117 5.30648C18.0628 5.09298 18.0628 4.7469 17.8117 4.5334L12.6688 0.160134C12.4178 -0.0533766 12.0108 -0.0533766 11.7597 0.160134C11.5087 0.373633 11.5087 0.719718 11.7597 0.933218L15.8051 4.37328L0.642857 4.37328C0.287872 4.37328 4.70509e-07 4.61801 4.44113e-07 4.91994Z"
-                              class="fill-[#A0A0A0] group-hover:fill-white" />
-                    </svg>
-                </button>
-            </div>
-            <!-- Slider Controls End -->
+
         </div>
 
     </div>
@@ -741,31 +664,11 @@
                     class="title text-[32px] md:text-4xl lg:text-5xl font-extralight text-black dark:text-white leading-1.27">
                     Contact <span class="font-semibold text-theme">Me.</span>
                 </h2>
-                <p class="mt-3.5 md:mt-5 subtitle max-w-sectionTitle">
-                    I design products that are more than pretty. I make them shippable and usable, ttempor
-                    non mollit dolor et do aute
-                </p>
             </div><!--./section-title-->
 
-            <div class="grid gap-12 mt-8 mb-10 md:my-12 md:grid-cols-12">
+            <div class="grid mt-8 mb-10 md:my-12 md:grid-cols-12" style="gap: 2rem">
                 <div class="md:col-span-5">
                     <ul class="contact-info space-y-6 md:space-y-10 2xl:space-y-12 *:flex *:flex-wrap *:items-center *:gap-5">
-                        <li>
-                            <div class="flex justify-center w-12 icon">
-                                <svg width="29" height="42" viewBox="0 0 29 42" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M21.9647 14.6023C21.9647 13.1428 21.5323 11.7161 20.7221 10.5026C19.9119 9.28904 18.7603 8.34321 17.4129 7.78469C16.0656 7.22617 14.5831 7.08003 13.1527 7.36476C11.7224 7.6495 10.4086 8.35231 9.3774 9.38432C8.3462 10.4163 7.64394 11.7312 7.35943 13.1627C7.07492 14.5941 7.22095 16.0778 7.77903 17.4262C8.33711 18.7746 9.28219 19.9271 10.4947 20.738C11.7073 21.5488 13.1329 21.9816 14.5912 21.9816C16.5461 21.9793 18.4203 21.2011 19.8026 19.8177C21.1849 18.4343 21.9624 16.5587 21.9647 14.6023ZM8.19081 14.6023C8.19081 13.3354 8.56618 12.097 9.26947 11.0436C9.97276 9.99021 10.9724 9.1692 12.1419 8.68439C13.3114 8.19957 14.5983 8.07272 15.8399 8.31988C17.0815 8.56703 18.2219 9.1771 19.117 10.0729C20.0121 10.9687 20.6217 12.1101 20.8687 13.3526C21.1156 14.5952 20.9889 15.8831 20.5045 17.0536C20.02 18.224 19.1997 19.2244 18.1471 19.9283C17.0946 20.6321 15.8571 21.0078 14.5912 21.0078C12.8943 21.0059 11.2674 20.3304 10.0675 19.1296C8.86764 17.9287 8.1927 16.3005 8.19081 14.6023ZM24.2873 33.543C22.5204 32.783 20.65 32.2913 18.738 32.0842C20.9575 29.4709 23.0322 26.7378 24.9528 23.8972C27.4103 20.1273 28.6053 17.0871 28.6053 14.6013C28.6053 10.8818 27.1289 7.31453 24.5008 4.68439C21.8728 2.05426 18.3084 0.57666 14.5917 0.57666C10.8751 0.57666 7.31067 2.05426 4.68261 4.68439C2.05455 7.31453 0.578125 10.8818 0.578125 14.6013C0.578125 17.0871 1.77411 20.1273 4.23066 23.8967C6.15138 26.7371 8.22592 29.4701 10.445 32.0837C8.54054 32.2902 6.67728 32.7786 4.9162 33.5329C2.63665 34.5891 2.15778 35.7693 2.15778 36.5736C2.15778 37.9338 3.51546 39.1671 5.98063 40.0466C8.76145 40.9426 11.6708 41.374 14.5917 41.3235C17.5127 41.3739 20.422 40.9425 23.2028 40.0466C25.6675 39.1671 27.0252 37.9338 27.0252 36.5736C27.0252 35.7741 26.5511 34.5963 24.2873 33.543ZM1.5507 14.6023C1.5507 11.141 2.92461 7.82145 5.37018 5.37394C7.81576 2.92644 11.1327 1.55144 14.5912 1.55144C18.0498 1.55144 21.3667 2.92644 23.8123 5.37394C26.2579 7.82145 27.6318 11.141 27.6318 14.6023C27.6318 19.8104 21.5983 27.1016 17.1932 32.4255C16.2503 33.5655 15.3514 34.6518 14.5912 35.6209C13.8311 34.6518 12.9322 33.5655 11.9893 32.4255C7.5842 27.1016 1.5507 19.8104 1.5507 14.6023ZM14.5912 40.3506C7.83727 40.3506 3.13083 38.3609 3.13083 36.5751C3.13083 35.8397 3.91014 35.0736 5.32475 34.4206C7.19133 33.6402 9.16768 33.1547 11.1832 32.9814L11.2396 33.0494C12.3399 34.3813 13.3833 35.64 14.2057 36.7134C14.2511 36.7728 14.3095 36.8209 14.3765 36.854C14.4435 36.8871 14.5172 36.9043 14.592 36.9043C14.6667 36.9043 14.7404 36.8871 14.8074 36.854C14.8744 36.8209 14.9328 36.7728 14.9783 36.7134C15.7997 35.64 16.8411 34.3818 17.9443 33.0494L18.0007 32.9814C20.0231 33.1548 22.0061 33.6433 23.8778 34.4292C25.2805 35.0827 26.0531 35.8454 26.0531 36.5774C26.0516 38.3609 21.3452 40.3506 14.5912 40.3506Z"
-                                        fill="#00BC91" />
-                                    <circle cx="14.5889" cy="14.6548" r="3.69277" stroke="white"
-                                            stroke-width="0.7" />
-                                </svg>
-                            </div>
-                            <div class="flex-1">
-                                <h6 class="text-lg text-black dark:text-white">Location</h6>
-                                <p class="text-sm">Melbourne Street. No 20</p>
-                            </div>
-                        </li>
                         <li>
                             <div class="flex justify-center w-12 icon">
                                 <svg width="41" height="42" viewBox="0 0 41 42" fill="none"
@@ -789,7 +692,7 @@
                             </div>
                             <div class="flex-1">
                                 <h6 class="text-lg text-black dark:text-white">E-mail</h6>
-                                <p class="text-sm">smith@gmail.com</p>
+                                <p class="text-sm">{{$settingData['email']}}</p>
                             </div>
                         </li>
                         <li>
@@ -812,46 +715,51 @@
                             </div>
                             <div class="flex-1">
                                 <h6 class="text-lg text-black dark:text-white">Phone</h6>
-                                <p class="text-sm">+976 34 99 99</p>
+                                <p class="text-sm">{{$settingData['phone']}}</p>
                             </div>
                         </li>
                     </ul>
                 </div><!-- Contact info end -->
 
                 <div class="md:col-span-7">
-                    <form id="contactForm" action="https://html.themestransmit.com/minfo-tailwind/contact-form.php" method="POST" class="space-y-4">
-                        <div class="form-group">
-                            <input type="text" name="client__name" id="client__name" placeholder="Name"
-                                   class="w-full p-5 text-sm outline-none h-13 focus:border-theme dark:focus:border-theme dark:placeholder:text-white/40"
-                                   required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="client_email" id="client_email" placeholder="E-Mail"
-                                   class="w-full p-5 text-sm outline-none h-13 focus:border-theme dark:focus:border-theme dark:placeholder:text-white/40"
-                                   required>
-                        </div>
-                        <div class="form-group">
-                                        <textarea name="contact__message" name="contact__message" placeholder="Message" rows="5"
-                                                  class="w-full px-5 py-4 text-sm outline-none focus:border-theme dark:placeholder:text-white/40"></textarea>
-                        </div>
-                        <div class=" form-group">
-                            <button type="submit"
-                                    class="inline-flex items-center gap-2 text-[15px] font-medium border border-theme bg-theme text-white py-4.5 px-9 rounded-4xl leading-none transition-all duration-300 hover:bg-themeHover hover:border-themeHover"
-                                    aria-label="Send Message">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
-                    <!-- Contact form end -->
+                    <ul class="contact-info space-y-6 md:space-y-10 2xl:space-y-12 *:flex *:flex-wrap *:items-center *:gap-5">
+                        <li>
+                            <div class="flex justify-center w-12 icon">
+                                <svg width="29" height="42" viewBox="0 0 29 42" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M21.9647 14.6023C21.9647 13.1428 21.5323 11.7161 20.7221 10.5026C19.9119 9.28904 18.7603 8.34321 17.4129 7.78469C16.0656 7.22617 14.5831 7.08003 13.1527 7.36476C11.7224 7.6495 10.4086 8.35231 9.3774 9.38432C8.3462 10.4163 7.64394 11.7312 7.35943 13.1627C7.07492 14.5941 7.22095 16.0778 7.77903 17.4262C8.33711 18.7746 9.28219 19.9271 10.4947 20.738C11.7073 21.5488 13.1329 21.9816 14.5912 21.9816C16.5461 21.9793 18.4203 21.2011 19.8026 19.8177C21.1849 18.4343 21.9624 16.5587 21.9647 14.6023ZM8.19081 14.6023C8.19081 13.3354 8.56618 12.097 9.26947 11.0436C9.97276 9.99021 10.9724 9.1692 12.1419 8.68439C13.3114 8.19957 14.5983 8.07272 15.8399 8.31988C17.0815 8.56703 18.2219 9.1771 19.117 10.0729C20.0121 10.9687 20.6217 12.1101 20.8687 13.3526C21.1156 14.5952 20.9889 15.8831 20.5045 17.0536C20.02 18.224 19.1997 19.2244 18.1471 19.9283C17.0946 20.6321 15.8571 21.0078 14.5912 21.0078C12.8943 21.0059 11.2674 20.3304 10.0675 19.1296C8.86764 17.9287 8.1927 16.3005 8.19081 14.6023ZM24.2873 33.543C22.5204 32.783 20.65 32.2913 18.738 32.0842C20.9575 29.4709 23.0322 26.7378 24.9528 23.8972C27.4103 20.1273 28.6053 17.0871 28.6053 14.6013C28.6053 10.8818 27.1289 7.31453 24.5008 4.68439C21.8728 2.05426 18.3084 0.57666 14.5917 0.57666C10.8751 0.57666 7.31067 2.05426 4.68261 4.68439C2.05455 7.31453 0.578125 10.8818 0.578125 14.6013C0.578125 17.0871 1.77411 20.1273 4.23066 23.8967C6.15138 26.7371 8.22592 29.4701 10.445 32.0837C8.54054 32.2902 6.67728 32.7786 4.9162 33.5329C2.63665 34.5891 2.15778 35.7693 2.15778 36.5736C2.15778 37.9338 3.51546 39.1671 5.98063 40.0466C8.76145 40.9426 11.6708 41.374 14.5917 41.3235C17.5127 41.3739 20.422 40.9425 23.2028 40.0466C25.6675 39.1671 27.0252 37.9338 27.0252 36.5736C27.0252 35.7741 26.5511 34.5963 24.2873 33.543ZM1.5507 14.6023C1.5507 11.141 2.92461 7.82145 5.37018 5.37394C7.81576 2.92644 11.1327 1.55144 14.5912 1.55144C18.0498 1.55144 21.3667 2.92644 23.8123 5.37394C26.2579 7.82145 27.6318 11.141 27.6318 14.6023C27.6318 19.8104 21.5983 27.1016 17.1932 32.4255C16.2503 33.5655 15.3514 34.6518 14.5912 35.6209C13.8311 34.6518 12.9322 33.5655 11.9893 32.4255C7.5842 27.1016 1.5507 19.8104 1.5507 14.6023ZM14.5912 40.3506C7.83727 40.3506 3.13083 38.3609 3.13083 36.5751C3.13083 35.8397 3.91014 35.0736 5.32475 34.4206C7.19133 33.6402 9.16768 33.1547 11.1832 32.9814L11.2396 33.0494C12.3399 34.3813 13.3833 35.64 14.2057 36.7134C14.2511 36.7728 14.3095 36.8209 14.3765 36.854C14.4435 36.8871 14.5172 36.9043 14.592 36.9043C14.6667 36.9043 14.7404 36.8871 14.8074 36.854C14.8744 36.8209 14.9328 36.7728 14.9783 36.7134C15.7997 35.64 16.8411 34.3818 17.9443 33.0494L18.0007 32.9814C20.0231 33.1548 22.0061 33.6433 23.8778 34.4292C25.2805 35.0827 26.0531 35.8454 26.0531 36.5774C26.0516 38.3609 21.3452 40.3506 14.5912 40.3506Z"
+                                        fill="#00BC91" />
+                                    <circle cx="14.5889" cy="14.6548" r="3.69277" stroke="white"
+                                            stroke-width="0.7" />
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h6 class="text-lg text-black dark:text-white">Location</h6>
+                                <p class="text-sm">{{$settingData['location']}}</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <iframe
-                class="w-full overflow-hidden border-10 border-platinum dark:border-greyBlack embed-map h-80 2xl:h-96 rounded-2xl"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25908.703277839155!2d-74.18208878159237!3d40.640176526919696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1699271377092!5m2!1sen!2sbd"
-                aria-label="Contact Map">
-            </iframe>
         </div>
 
     </div>
     <!-- Contact Section End -->
 @endsection
+
+@push('front-script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const circles = document.querySelectorAll('.progress-circle');
+            circles.forEach(circle => {
+                const percentage = circle.getAttribute('data-percentage');
+                const offset = 295 - (295 * percentage) / 100;
+                setTimeout(() => {
+                    circle.style.strokeDashoffset = offset;
+                }, 300); // small delay for smoother animation
+            });
+        });
+    </script>
+@endpush
+
