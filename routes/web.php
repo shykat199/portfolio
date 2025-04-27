@@ -14,7 +14,7 @@ use App\Http\Controllers\ResumeController;
 
 Route::get('/',[IndexController::class,'index'])->name('home.index');
 Route::get('/project-list',[ProjectController::class,'index'])->name('project-list');
-Route::get('/project-details',[ProjectController::class,'projectDetails'])->name('project-details');
+Route::get('/project-details/{slug}',[ProjectController::class,'projectDetails'])->name('project-details');
 
 
 Auth::routes();

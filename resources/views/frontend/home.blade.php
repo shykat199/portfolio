@@ -212,7 +212,10 @@
     </div>
     <!-- Skills Section End -->
 
-
+    @php
+        $workExperiences = \App\Models\WorkExperience::where('status',ACTIVE_STATUS)->get();
+        $educationExperiences = \App\Models\EducationalExperience::where('status',ACTIVE_STATUS)->get();
+    @endphp
     <!-- My Resume Section Start -->
     <div data-scroll-index="4" id="resume">
 
@@ -227,78 +230,34 @@
                     class="title text-[32px] md:text-4xl lg:text-5xl font-extralight text-black dark:text-white leading-1.27">
                     Work <span class="font-semibold text-theme">Experience</span>
                 </h2>
-                <p class="max-w-xl mt-4 md:mt-6 subtitle">
-                    I design products that are more than pretty. I make them shippable and usable, tempor
-                    non mollit dolor et do aute
+                <p class="mt-4 md:mt-6 subtitle">
+                    Below is a list of companies I have worked with, showcasing my professional journey and experience.
+                    Each role has helped me sharpen my skills and grow as a developer.
                 </p>
             </div><!--./section-title-->
 
             <div class="experience">
-                <ul
-                    class="space-y-5 md:space-y-11 relative md:before:content-[''] md:before:absolute md:before:left-64 md:before:border-r md:before:border-platinum md:dark:before:border-metalBlack md:before:h-[calc(100%_-1.5rem)] md:before:top-1/2 md:before:-translate-y-1/2 *:p-5 *:border *:rounded-xl md:*:flex max-md:*:space-y-2 *:border-platinum dark:*:border-metalBlack md:*:border-0 md:*:p-0 md:*:rounded-none">
-                    <li>
-                        <div class="flex items-center justify-between mb-5 md:w-64 md:block md:mb-0">
-                            <h6
-                                class="text-sm font-medium text-black dark:text-white text-opacity-60 md:text-base md:text-opacity-100">
-                                Envato Market
-                            </h6>
-                            <p class="text-[13px] md:text-sm text-theme">
-                                Mar, 2022 - Current
-                            </p>
-                        </div>
-                        <div
-                            class="md:flex-1 md:pl-16 relative md:before:content-[''] md:before:absolute md:before:-left-1 md:before:top-3 md:before:w-2 md:before:h-2 md:before:bg-theme md:before:rounded-full md:before:shadow-dots_glow">
-                            <h4
-                                class="text-xl xl:text-2xl font-medium xl:font-medium leading-7 text-black dark:text-white mb-2.5">
-                                Lead UX Designer
-                            </h4>
-                            <p>
-                                Owing to advancements in product other designer technologies aute voluptate.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flex items-center justify-between mb-5 md:w-64 md:block md:mb-0">
-                            <h6
-                                class="text-sm font-medium text-black dark:text-white text-opacity-60 md:text-base md:text-opacity-100">
-                                Google
-                            </h6>
-                            <p class="text-[13px] md:text-sm text-theme">
-                                2018 - 2022
-                            </p>
-                        </div>
-                        <div
-                            class="md:flex-1 md:pl-16 relative md:before:content-[''] md:before:absolute md:before:-left-1 md:before:top-3 md:before:w-2 md:before:h-2 md:before:bg-theme md:before:rounded-full md:before:shadow-dots_glow">
-                            <h4
-                                class="text-xl xl:text-2xl font-medium xl:font-medium leading-7 text-black dark:text-white mb-2.5">
-                                UX Designer
-                            </h4>
-                            <p>
-                                Owing to advancements in product other designer technologies aute voluptate.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flex items-center justify-between mb-5 md:w-64 md:block md:mb-0">
-                            <h6
-                                class="text-sm font-medium text-black dark:text-white text-opacity-60 md:text-base md:text-opacity-100">
-                                Apple
-                            </h6>
-                            <p class="text-[13px] md:text-sm text-theme">
-                                2014-2018
-                            </p>
-                        </div>
-                        <div
-                            class="md:flex-1 md:pl-16 relative md:before:content-[''] md:before:absolute md:before:-left-1 md:before:top-3 md:before:w-2 md:before:h-2 md:before:bg-theme md:before:rounded-full md:before:shadow-dots_glow">
-                            <h4
-                                class="text-xl xl:text-2xl font-medium xl:font-medium leading-7 text-black dark:text-white mb-2.5">
-                                Human Interface Designer
-                            </h4>
-                            <p>
-                                Owing to advancements in product other designer technologies aute voluptate.
-                            </p>
-                        </div>
-                    </li>
+                <ul class="space-y-5 md:space-y-11 relative md:before:content-[''] md:before:absolute md:before:left-64 md:before:border-r md:before:border-platinum md:dark:before:border-metalBlack md:before:h-[calc(100%_-1.5rem)] md:before:top-1/2 md:before:-translate-y-1/2 *:p-5 *:border *:rounded-xl md:*:flex max-md:*:space-y-2 *:border-platinum dark:*:border-metalBlack md:*:border-0 md:*:p-0 md:*:rounded-none">
+                    @foreach($workExperiences as $experience)
+                        <li>
+                            <div class="flex items-center justify-between mb-5 md:w-64 md:block md:mb-0">
+                                <h6 class="text-sm font-medium text-black dark:text-white text-opacity-60 md:text-base md:text-opacity-100">
+                                    {{$experience->company_name}}
+                                </h6>
+                                <p class="text-[13px] md:text-sm text-theme">
+                                    {{\Carbon\Carbon::parse($experience->start_date)->format('M, Y')}} - {{\Carbon\Carbon::parse($experience->end_date)->format('M, Y')}}
+                                </p>
+                            </div>
+                            <div class="md:flex-1 md:pl-16 relative md:before:content-[''] md:before:absolute md:before:-left-1 md:before:top-3 md:before:w-2 md:before:h-2 md:before:bg-theme md:before:rounded-full md:before:shadow-dots_glow">
+                                <h4 class="text-xl xl:text-2xl font-medium xl:font-medium leading-7 text-black dark:text-white mb-2.5">
+                                    {{$experience->position}}
+                                </h4>
+                                <p>
+                                    {!! $experience->description !!}
+                                </p>
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <br>
@@ -307,85 +266,46 @@
                     class="title text-[32px] md:text-4xl lg:text-5xl font-extralight text-black dark:text-white leading-1.27">
                     My <span class="font-semibold text-theme">Education</span>
                 </h2>
-                <p class="max-w-xl mt-4 md:mt-6 subtitle">
-                    I design products that are more than pretty. I make them shippable and usable, tempor
-                    non mollit dolor et do aute
+                <p class="mt-4 md:mt-6 subtitle">
+                    Below is an overview of my educational background, which has built a strong foundation for my professional career.
+                    Each milestone has shaped my skills and knowledge in the field.
                 </p>
+
             </div>
 
             <div class="experience">
-                <ul
-                    class="space-y-5 md:space-y-11 relative md:before:content-[''] md:before:absolute md:before:left-64 md:before:border-r md:before:border-platinum md:dark:before:border-metalBlack md:before:h-[calc(100%_-1.5rem)] md:before:top-1/2 md:before:-translate-y-1/2 *:p-5 *:border *:rounded-xl md:*:flex max-md:*:space-y-2 *:border-platinum dark:*:border-metalBlack md:*:border-0 md:*:p-0 md:*:rounded-none">
-                    <li>
-                        <div class="flex items-center justify-between mb-5 md:w-64 md:block md:mb-0">
-                            <h6
-                                class="text-sm font-medium text-black dark:text-white text-opacity-60 md:text-base md:text-opacity-100">
-                                Oxford University
-                            </h6>
-                            <p class="text-[13px] md:text-sm text-theme">
-                                2016-2018
-                            </p>
-                        </div>
-                        <div
-                            class="md:flex-1 md:pl-16 relative md:before:content-[''] md:before:absolute md:before:-left-1 md:before:top-3 md:before:w-2 md:before:h-2 md:before:bg-theme md:before:rounded-full md:before:shadow-dots_glow">
-                            <h4
-                                class="text-xl xl:text-2xl font-medium xl:font-medium leading-7 text-black dark:text-white mb-2.5">
-                                Diploma in Computer
-                            </h4>
-                            <p>
-                                Owing to advancements in product other designer technologies aute voluptate.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flex items-center justify-between mb-5 md:w-64 md:block md:mb-0">
-                            <h6
-                                class="text-sm font-medium text-black dark:text-white text-opacity-60 md:text-base md:text-opacity-100">
-                                Google
-                            </h6>
-                            <p class="text-[13px] md:text-sm text-theme">
-                                2018 - 2022
-                            </p>
-                        </div>
-                        <div
-                            class="md:flex-1 md:pl-16 relative md:before:content-[''] md:before:absolute md:before:-left-1 md:before:top-3 md:before:w-2 md:before:h-2 md:before:bg-theme md:before:rounded-full md:before:shadow-dots_glow">
-                            <h4
-                                class="text-xl xl:text-2xl font-medium xl:font-medium leading-7 text-black dark:text-white mb-2.5">
-                                BSc in Engineering
-                            </h4>
-                            <p>
-                                Owing to advancements in product other designer technologies aute voluptate.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flex items-center justify-between mb-5 md:w-64 md:block md:mb-0">
-                            <h6
-                                class="text-sm font-medium text-black dark:text-white text-opacity-60 md:text-base md:text-opacity-100">
-                                Oxford University
-                            </h6>
-                            <p class="text-[13px] md:text-sm text-theme">
-                                2014-2018
-                            </p>
-                        </div>
-                        <div
-                            class="md:flex-1 md:pl-16 relative md:before:content-[''] md:before:absolute md:before:-left-1 md:before:top-3 md:before:w-2 md:before:h-2 md:before:bg-theme md:before:rounded-full md:before:shadow-dots_glow">
-                            <h4
-                                class="text-xl xl:text-2xl font-medium xl:font-medium leading-7 text-black dark:text-white mb-2.5">
-                                Php Development
-                            </h4>
-                            <p>
-                                Owing to advancements in product other designer technologies aute voluptate.
-                            </p>
-                        </div>
-                    </li>
+                <ul class="space-y-5 md:space-y-11 relative md:before:content-[''] md:before:absolute md:before:left-64 md:before:border-r md:before:border-platinum md:dark:before:border-metalBlack md:before:h-[calc(100%_-1.5rem)] md:before:top-1/2 md:before:-translate-y-1/2 *:p-5 *:border *:rounded-xl md:*:flex max-md:*:space-y-2 *:border-platinum dark:*:border-metalBlack md:*:border-0 md:*:p-0 md:*:rounded-none">
+                    @foreach($educationExperiences as $experience)
+                        <li>
+                            <div class="flex items-center justify-between mb-5 md:w-64 md:block md:mb-0">
+                                <h6 class="text-sm font-medium text-black dark:text-white text-opacity-60 md:text-base md:text-opacity-100">
+                                    {{$experience->college_name}}
+                                </h6>
+                                <p class="text-[13px] md:text-sm text-theme">
+                                    {{\Carbon\Carbon::parse($experience->start_date)->format('M, Y')}} - {{\Carbon\Carbon::parse($experience->end_date)->format('M, Y')}}
+                                </p>
+                            </div>
+                            <div class="md:flex-1 md:pl-16 relative md:before:content-[''] md:before:absolute md:before:-left-1 md:before:top-3 md:before:w-2 md:before:h-2 md:before:bg-theme md:before:rounded-full md:before:shadow-dots_glow">
+                                <h4 class="text-xl xl:text-2xl font-medium xl:font-medium leading-7 text-black dark:text-white mb-2.5">
+                                    {{$experience->position}}
+                                </h4>
+                                <p>
+                                    {!! $experience->description !!}
+                                </p>
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
+
         </div>
 
     </div>
     <!-- My Resume Section End -->
 
+    @php
+        $projects = \App\Models\Project::where('status',ACTIVE_STATUS)->limit(3)->get();
+    @endphp
 
     <!-- Portfolio Section Start -->
     <div data-scroll-index="5" id="portfolio">
@@ -401,116 +321,42 @@
                     class="title text-[32px] md:text-4xl lg:text-5xl font-extralight text-black dark:text-white leading-1.27">
                     Featured <span class="font-semibold text-theme">Projects</span>
                 </h2>
-                <p class="max-w-xl mt-4 md:mt-6 subtitle">
-                    I design products that are more than pretty. I make them shippable and usable, ttempor
-                    non mollit dolor et do aute
+                <p class="mt-4 md:mt-6 subtitle">
+                    Here are some of the featured projects I've worked on, showcasing my skills, creativity, and commitment to delivering high-quality results.
                 </p>
+
             </div><!--./section-title-->
 
             <div class="blog-list md:space-y-7.5 space-y-5 *:grid md:*:gap-2 *:grid-cols-12 *:overflow-hidden *:bg-flashWhite dark:*:bg-metalBlack *:items-center *:rounded-2xl *:p-3.5">
+                @foreach($projects as $project)
+                    <div class="article group">
+                        <div class="thumbnail overflow-hidden flex col-span-12 sm:col-span-6 md:col-span-5">
+                            <a href="{{route('project-details',$project->slug)}}" class="block w-full overflow-hidden rounded-xl">
+                                <img src="{{asset('storage/'.$project->img)}}"
+                                     class="object-cover object-center w-full h-full min-h-[288px] max-h-60 md:min-h-60 transition-all duration-300 ease-in-out group-hover:scale-105"
+                                     alt="{{$project->title}}">
+                            </a>
+                        </div>
+                        <div class="post-content relative px-3 pt-6 pb-2 md:p-5 flex flex-col col-span-12 sm:col-span-6 md:col-span-7">
 
-                <div class="article group">
-                    <div class="thumbnail overflow-hidden flex col-span-12 sm:col-span-6 md:col-span-5">
-                        <a href="article-details.html" class="block w-full overflow-hidden rounded-xl">
-                            <img src="assets/img/blog/article1.png"
-                                 class="object-cover object-center w-full h-full min-h-[288px] max-h-60 md:min-h-60 transition-all duration-300 ease-in-out group-hover:scale-105"
-                                 alt="Post Title">
-                        </a>
-                    </div>
-                    <div
-                        class="post-content relative px-3 pt-6 pb-2 md:p-5 flex flex-col col-span-12 sm:col-span-6 md:col-span-7">
-                        <div class="flex items-center gap-5">
-                            <div class="text-sm font-medium tags">
-                                <a href="#" class="transition-colors hover:text-theme">
-                                    UI Design
-                                </a>,
-                                <span class="post_date">
-                                                03 May 2023
-                                            </span>
+                            <div class="post-title mt-3 md:mt-4.5 mb-6 md:mb-8">
+                                <a href="{{route('project-details',$project->slug)}}"
+                                   class="text-xl font-semibold leading-normal text-black dark:text-white transition-colors line-clamp-2 2xl:text-2xl 2xl:leading-normal hover:text-theme">
+                                    {{$project->title}}
+                                </a>
+                                <p class="mt-4 md:mt-6 subtitle">
+                                    {!! \Illuminate\Support\Str::limit($project->description,100,'...') !!}
+                                </p>
+                            </div>
+                            <div class="read-details">
+                                <a href="{{route('project-list')}}"
+                                   class="inline-flex items-center gap-2 border border-theme text-theme text-sm py-3.5 px-6 rounded-3xl leading-none transition-all duration-300 hover:bg-themeHover hover:border-themeHover dark:font-medium hover:text-white">
+                                    Read More
+                                </a>
                             </div>
                         </div>
-                        <div class="post-title mt-3 md:mt-4.5 mb-6 md:mb-8">
-                            <a href="article-details.html"
-                               class="text-xl font-semibold leading-normal text-black dark:text-white transition-colors line-clamp-2 2xl:text-2xl 2xl:leading-normal hover:text-theme">
-                                Elevate your mornings with perfectly brewed coffee
-                            </a>
-                        </div>
-                        <div class="read-details">
-                            <a href="article-details.html"
-                               class="inline-flex items-center gap-2 border border-theme text-theme text-sm py-3.5 px-6 rounded-3xl leading-none transition-all duration-300 hover:bg-themeHover hover:border-themeHover dark:font-medium hover:text-white">
-                                Read More
-                            </a>
-                        </div>
                     </div>
-                </div>
-                <div class="article group">
-                    <div class="thumbnail overflow-hidden flex col-span-12 sm:col-span-6 md:col-span-5">
-                        <a href="article-details.html" class="block w-full overflow-hidden rounded-xl">
-                            <img src="assets/img/blog/article2.png"
-                                 class="object-cover object-center w-full h-full min-h-[288px] max-h-60 md:min-h-60 transition-all duration-300 ease-in-out group-hover:scale-105"
-                                 alt="Post Title">
-                        </a>
-                    </div>
-                    <div
-                        class="post-content relative px-3 pt-6 pb-2 md:p-5 flex flex-col col-span-12 sm:col-span-6 md:col-span-7">
-                        <div class="flex items-center gap-5">
-                            <div class="text-sm font-medium tags">
-                                <a href="#" class="transition-colors hover:text-theme">
-                                    UI Design
-                                </a>,
-                                <span class="post_date">
-                                                03 May 2023
-                                            </span>
-                            </div>
-                        </div>
-                        <div class="post-title mt-3 md:mt-4.5 mb-6 md:mb-8">
-                            <a href="article-details.html"
-                               class="text-xl font-semibold leading-normal text-black dark:text-white transition-colors line-clamp-2 2xl:text-2xl 2xl:leading-normal hover:text-theme">
-                                Mastering the clock: A guide to time management
-                            </a>
-                        </div>
-                        <div class="read-details">
-                            <a href="article-details.html"
-                               class="inline-flex items-center gap-2 border border-theme text-theme text-sm py-3.5 px-6 rounded-3xl leading-none transition-all duration-300 hover:bg-themeHover hover:border-themeHover dark:font-medium hover:text-white">
-                                Read More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="article group">
-                    <div class="thumbnail overflow-hidden flex col-span-12 sm:col-span-6 md:col-span-5">
-                        <a href="article-details.html" class="block w-full overflow-hidden rounded-xl">
-                            <img src="assets/img/blog/article3.png"
-                                 class="object-cover object-center w-full h-full min-h-[288px] max-h-60 md:min-h-60 transition-all duration-300 ease-in-out group-hover:scale-105"
-                                 alt="Post Title">
-                        </a>
-                    </div>
-                    <div
-                        class="post-content relative px-3 pt-6 pb-2 md:p-5 flex flex-col col-span-12 sm:col-span-6 md:col-span-7">
-                        <div class="flex items-center gap-5">
-                            <div class="text-sm font-medium tags">
-                                <a href="#" class="transition-colors hover:text-theme">
-                                    UI Design
-                                </a>,
-                                <span class="post_date">
-                                                03 May 2023
-                                            </span>
-                            </div>
-                        </div>
-                        <div class="post-title mt-3 md:mt-4.5 mb-6 md:mb-8">
-                            <a href="article-details.html"
-                               class="text-xl font-semibold leading-normal text-black dark:text-white transition-colors line-clamp-2 2xl:text-2xl 2xl:leading-normal hover:text-theme">
-                                Homeward bound: Crafting a productive home pffice
-                            </a>
-                        </div>
-                        <div class="read-details">
-                            <a href="article-details.html"
-                               class="inline-flex items-center gap-2 border border-theme text-theme text-sm py-3.5 px-6 rounded-3xl leading-none transition-all duration-300 hover:bg-themeHover hover:border-themeHover dark:font-medium hover:text-white">
-                                Read More
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
 
@@ -526,127 +372,191 @@
     </div>
     <!-- Portfolio Section End -->
 
+    {{--  Services start  --}}
+    <div data-scroll-index="2" id="service">
 
-
-    <!-- Testimonial Section Start -->
-    <div data-scroll-index="7" id="testimonial">
-
-        <div class="testimonial-section px-5 py-8 md:p-8 bg-white dark:bg-nightBlack rounded-2xl lg:p-10 2xl:p-13">
-            <div
-                class="inline-flex items-center gap-2 px-4 py-2 text-xs tracking-wide text-black dark:text-white border lg:px-5 section-name border-platinum dark:border-greyBlack200 rounded-4xl">
-                <i class="fal fa-comment-alt-check text-theme"></i>
-                TESTIMONIAL
+        <div class="service-section px-5 py-8 md:p-8 bg-white dark:bg-nightBlack rounded-2xl lg:p-10 2xl:p-13">
+            <div class="inline-flex items-center gap-2 px-4 py-2 text-xs tracking-wide text-black dark:text-white border lg:px-5 section-name border-platinum dark:border-greyBlack200 rounded-4xl">
+                <i class="fal fa-briefcase text-theme"></i>
+                SERVICES
             </div>
-            <div class="mt-5 mb-8 md:my-10 section-title">
-                <h2
-                    class="title text-[32px] md:text-4xl lg:text-5xl font-extralight text-black dark:text-white leading-1.27">
-                    What <span class="font-semibold text-theme">People Say</span>
+            <div class="mb-8 mt-7 md:my-10 section-title">
+                <h2 class="title text-[32px] md:text-4xl lg:text-5xl font-extralight text-black dark:text-white leading-1.27">
+                    My <span class="font-semibold text-theme">Services</span>
                 </h2>
-                <p class="max-w-xl mt-4 md:mt-6 subtitle">
-                    I design products that are more than pretty. I make them shippable and usable, tempor
-                    non mollit dolor et do aute
-                </p>
-            </div><!--./section-title-->
+            </div>
 
-            <div class="mt-12 testimonial-slider">
-                <div class="swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="text-center slider-inner md:px-5">
-                                <div class="image flex-center">
-                                    <img src="assets/img/testimonial/author1.png" alt="">
-                                </div>
-                                <div class="mt-6 mb-3 text-center rating text-lightOrange text-sm">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="text-sm md:text-[15px] leading-loose content">
-                                    Working with <span class="font-semibold text-theme">Reddick</span> is a game-changer. Their coding expertise and commitment to quality make every project a success.
-                                </div>
-                                <div class="mt-5 text-center author">
-                                    <h6 class="text-lg font-medium text-black dark:text-white">Alex Johnson</h6>
-                                    <p class="text-sm">Developer</p>
-                                </div>
-                            </div>
-                        </div><!--./testimonial-card-->
-
-                        <div class="swiper-slide">
-                            <div class="text-center slider-inner md:px-5">
-                                <div class="image flex-center">
-                                    <img src="assets/img/testimonial/author2.png" alt="">
-                                </div>
-                                <div class="mt-6 mb-3 text-center rating text-lightOrange text-sm">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="text-sm md:text-[15px] leading-loose content">
-                                    <span class="font-semibold text-theme">Reddick</span> exceeds expectations with top-tier coding skills. Reliable, collaborative, and a true asset to any project. Highly recommended
-                                </div>
-                                <div class="mt-5 text-center author">
-                                    <h6 class="text-lg font-medium text-black dark:text-white">Mily Martin</h6>
-                                    <p class="text-sm">CEO-itTheme</p>
-                                </div>
-                            </div>
-                        </div><!--./testimonial-card-->
-
-                        <div class="swiper-slide">
-                            <div class="text-center slider-inner md:px-5">
-                                <div class="image flex-center">
-                                    <img src="assets/img/testimonial/author2.png" alt="">
-                                </div>
-                                <div class="mt-6 mb-3 text-center rating text-lightOrange text-sm">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="text-sm md:text-[15px] leading-loose content">
-                                    <span class="font-semibold text-theme">Reddick</span> delivers excellence in every line of code. Dependable, innovative, and a key player in project success. Outstanding performance.
-                                </div>
-                                <div class="mt-5 text-center author">
-                                    <h6 class="text-lg font-medium text-black dark:text-white">Alex Johnson</h6>
-                                    <p class="text-sm">Developer</p>
-                                </div>
-                            </div>
-                        </div><!--./testimonial-card-->
+            <div class="grid gap-5 md:gap-6 service-card-wrapper sm:grid-cols-2 lg:gap-7 2xl:gap-8 *:relative *:p-5 *:transition *:duration-300 *:border *:py-7 md:*:p-7 *:border-platinum dark:*:border-metalBlack *:rounded-2xl xl:*:p-8 2xl:*:p-10">
+                <div class="card-item group hover:border-theme dark:hover:border-theme">
+                    <div class="absolute transition duration-300 md:top-10 icon right-6 top-7 md:right-8 group-hover:-rotate-45 lg:top-11">
+                        <img src="{{asset('img/code.svg')}}" alt="code">
                     </div>
-
-                    <!-- Slider Controls Start -->
-                    <div
-                        class="testimonial-slider-navigation flex justify-center items-center gap-2.5 mt-10 lg:mt-12">
-                        <button
-                            class="transition border rounded-full button-prev w-11 h-11 group border-platinum dark:border-greyBlack flex-center hover:bg-theme hover:border-theme"
-                            aria-label="Previous">
-                            <svg width="18" height="10" viewBox="0 0 18 10" fill="none" class="text-[#A0A0A0] group-hover:text-white"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                      d="M18 5.08006C18 4.77812 17.7121 4.5334 17.3571 4.5334L2.19486 4.5334L6.07553 0.933214C6.32659 0.719715 6.32659 0.373628 6.07553 0.160126C5.82448 -0.0533767 5.41745 -0.0533766 5.1664 0.160126L0.188289 4.69352C-0.0627618 4.90702 -0.0627618 5.2531 0.188289 5.4666L5.33115 9.83986C5.5822 10.0534 5.98923 10.0534 6.24028 9.83986C6.49134 9.62637 6.49134 9.28028 6.24028 9.06678L2.19486 5.62672L17.3571 5.62671C17.7121 5.62671 18 5.38199 18 5.08006Z" fill="currentcolor" />
-                            </svg>
-                        </button>
-                        <div class="text-sm font-light text-center text-black dark:text-white counter w-7"></div>
-                        <button
-                            class="transition border rounded-full button-next w-11 h-11 group border-platinum dark:border-greyBlack flex-center hover:bg-theme hover:border-theme"
-                            aria-label="Next">
-                            <svg width="18" height="10" viewBox="0 0 18 10" fill="none" class="text-[#A0A0A0] group-hover:text-white"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                      d="M4.44113e-07 4.91994C4.17717e-07 5.22187 0.287871 5.4666 0.642857 5.4666L15.8051 5.4666L11.9245 9.06678C11.6734 9.28028 11.6734 9.62637 11.9245 9.83987C12.1755 10.0534 12.5826 10.0534 12.8336 9.83987L17.8117 5.30648C18.0628 5.09298 18.0628 4.7469 17.8117 4.5334L12.6688 0.160134C12.4178 -0.0533766 12.0108 -0.0533766 11.7597 0.160134C11.5087 0.373633 11.5087 0.719718 11.7597 0.933218L15.8051 4.37328L0.642857 4.37328C0.287872 4.37328 4.70509e-07 4.61801 4.44113e-07 4.91994Z" fill="currentcolor"/>
-                            </svg>
-                        </button>
+                    <div class="text-5xl font-extrabold transition duration-300 md:text-6xl number lg:text-7xl text-greyBlack opacity-30 group-hover:opacity-100">
+                        01
                     </div>
-                    <!-- Slider Controls End -->
+                    <h4 class="mt-5 mb-4 text-xl font-medium text-black dark:text-white xl:text-2xl">
+                        Writing Code
+                    </h4>
                 </div>
-            </div><!--./testimonial-slider-->
+                <div class="card-item group hover:border-theme dark:hover:border-theme">
+                    <div class="absolute transition duration-300 md:top-10 icon right-6 top-7 md:right-8 group-hover:-rotate-45 lg:top-11">
+                        <img src="{{asset('img/web-dev.svg')}}" alt="web">
+                    </div>
+                    <div class="text-5xl font-extrabold transition duration-300 md:text-6xl number lg:text-7xl text-greyBlack opacity-30 group-hover:opacity-100">
+                        02
+                    </div>
+                    <h4 class="mt-5 mb-4 text-xl font-medium text-black dark:text-white xl:text-2xl">
+                        Web Development
+                    </h4>
+                </div>
+                <div class="card-item group hover:border-theme dark:hover:border-theme">
+                    <div class="absolute transition duration-300 md:top-10 icon right-6 top-7 md:right-8 group-hover:-rotate-45 lg:top-11">
+                        <img src="{{asset('img/api.svg')}}" alt="api">
+                    </div>
+                    <div class="text-5xl font-extrabold transition duration-300 md:text-6xl number lg:text-7xl text-greyBlack opacity-30 group-hover:opacity-100">
+                        03
+                    </div>
+                    <h4 class="mt-5 mb-4 text-xl font-medium text-black dark:text-white xl:text-2xl">
+                        API Development
+                    </h4>
+                </div>
+                <div class="card-item group hover:border-theme dark:hover:border-theme">
+                    <div class="absolute transition duration-300 md:top-10 icon right-6 top-7 md:right-8 group-hover:-rotate-45 lg:top-11">
+                        <img src="{{asset('img/bug.svg')}}" alt="bug">
+                    </div>
+                    <div class="text-5xl font-extrabold transition duration-300 md:text-6xl number lg:text-7xl text-greyBlack opacity-30 group-hover:opacity-100">
+                        04
+                    </div>
+                    <h4 class="mt-5 mb-4 text-xl font-medium text-black dark:text-white xl:text-2xl">
+                        Produce And Fix Bug
+                    </h4>
+                </div>
+            </div>
         </div>
 
     </div>
+    {{--  Services end  --}}
+
+
+    <!-- Testimonial Section Start -->
+{{--    <div data-scroll-index="7" id="testimonial">--}}
+
+{{--        <div class="testimonial-section px-5 py-8 md:p-8 bg-white dark:bg-nightBlack rounded-2xl lg:p-10 2xl:p-13">--}}
+{{--            <div--}}
+{{--                class="inline-flex items-center gap-2 px-4 py-2 text-xs tracking-wide text-black dark:text-white border lg:px-5 section-name border-platinum dark:border-greyBlack200 rounded-4xl">--}}
+{{--                <i class="fal fa-comment-alt-check text-theme"></i>--}}
+{{--                TESTIMONIAL--}}
+{{--            </div>--}}
+{{--            <div class="mt-5 mb-8 md:my-10 section-title">--}}
+{{--                <h2--}}
+{{--                    class="title text-[32px] md:text-4xl lg:text-5xl font-extralight text-black dark:text-white leading-1.27">--}}
+{{--                    What <span class="font-semibold text-theme">People Say</span>--}}
+{{--                </h2>--}}
+{{--                <p class="max-w-xl mt-4 md:mt-6 subtitle">--}}
+{{--                    I design products that are more than pretty. I make them shippable and usable, tempor--}}
+{{--                    non mollit dolor et do aute--}}
+{{--                </p>--}}
+{{--            </div><!--./section-title-->--}}
+
+{{--            <div class="mt-12 testimonial-slider">--}}
+{{--                <div class="swiper">--}}
+{{--                    <div class="swiper-wrapper">--}}
+{{--                        <div class="swiper-slide">--}}
+{{--                            <div class="text-center slider-inner md:px-5">--}}
+{{--                                <div class="image flex-center">--}}
+{{--                                    <img src="assets/img/testimonial/author1.png" alt="">--}}
+{{--                                </div>--}}
+{{--                                <div class="mt-6 mb-3 text-center rating text-lightOrange text-sm">--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="text-sm md:text-[15px] leading-loose content">--}}
+{{--                                    Working with <span class="font-semibold text-theme">Reddick</span> is a game-changer. Their coding expertise and commitment to quality make every project a success.--}}
+{{--                                </div>--}}
+{{--                                <div class="mt-5 text-center author">--}}
+{{--                                    <h6 class="text-lg font-medium text-black dark:text-white">Alex Johnson</h6>--}}
+{{--                                    <p class="text-sm">Developer</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div><!--./testimonial-card-->--}}
+
+{{--                        <div class="swiper-slide">--}}
+{{--                            <div class="text-center slider-inner md:px-5">--}}
+{{--                                <div class="image flex-center">--}}
+{{--                                    <img src="assets/img/testimonial/author2.png" alt="">--}}
+{{--                                </div>--}}
+{{--                                <div class="mt-6 mb-3 text-center rating text-lightOrange text-sm">--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="text-sm md:text-[15px] leading-loose content">--}}
+{{--                                    <span class="font-semibold text-theme">Reddick</span> exceeds expectations with top-tier coding skills. Reliable, collaborative, and a true asset to any project. Highly recommended--}}
+{{--                                </div>--}}
+{{--                                <div class="mt-5 text-center author">--}}
+{{--                                    <h6 class="text-lg font-medium text-black dark:text-white">Mily Martin</h6>--}}
+{{--                                    <p class="text-sm">CEO-itTheme</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div><!--./testimonial-card-->--}}
+
+{{--                        <div class="swiper-slide">--}}
+{{--                            <div class="text-center slider-inner md:px-5">--}}
+{{--                                <div class="image flex-center">--}}
+{{--                                    <img src="assets/img/testimonial/author2.png" alt="">--}}
+{{--                                </div>--}}
+{{--                                <div class="mt-6 mb-3 text-center rating text-lightOrange text-sm">--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="text-sm md:text-[15px] leading-loose content">--}}
+{{--                                    <span class="font-semibold text-theme">Reddick</span> delivers excellence in every line of code. Dependable, innovative, and a key player in project success. Outstanding performance.--}}
+{{--                                </div>--}}
+{{--                                <div class="mt-5 text-center author">--}}
+{{--                                    <h6 class="text-lg font-medium text-black dark:text-white">Alex Johnson</h6>--}}
+{{--                                    <p class="text-sm">Developer</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div><!--./testimonial-card-->--}}
+{{--                    </div>--}}
+
+{{--                    <!-- Slider Controls Start -->--}}
+{{--                    <div--}}
+{{--                        class="testimonial-slider-navigation flex justify-center items-center gap-2.5 mt-10 lg:mt-12">--}}
+{{--                        <button--}}
+{{--                            class="transition border rounded-full button-prev w-11 h-11 group border-platinum dark:border-greyBlack flex-center hover:bg-theme hover:border-theme"--}}
+{{--                            aria-label="Previous">--}}
+{{--                            <svg width="18" height="10" viewBox="0 0 18 10" fill="none" class="text-[#A0A0A0] group-hover:text-white"--}}
+{{--                                 xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                <path fill-rule="evenodd" clip-rule="evenodd"--}}
+{{--                                      d="M18 5.08006C18 4.77812 17.7121 4.5334 17.3571 4.5334L2.19486 4.5334L6.07553 0.933214C6.32659 0.719715 6.32659 0.373628 6.07553 0.160126C5.82448 -0.0533767 5.41745 -0.0533766 5.1664 0.160126L0.188289 4.69352C-0.0627618 4.90702 -0.0627618 5.2531 0.188289 5.4666L5.33115 9.83986C5.5822 10.0534 5.98923 10.0534 6.24028 9.83986C6.49134 9.62637 6.49134 9.28028 6.24028 9.06678L2.19486 5.62672L17.3571 5.62671C17.7121 5.62671 18 5.38199 18 5.08006Z" fill="currentcolor" />--}}
+{{--                            </svg>--}}
+{{--                        </button>--}}
+{{--                        <div class="text-sm font-light text-center text-black dark:text-white counter w-7"></div>--}}
+{{--                        <button--}}
+{{--                            class="transition border rounded-full button-next w-11 h-11 group border-platinum dark:border-greyBlack flex-center hover:bg-theme hover:border-theme"--}}
+{{--                            aria-label="Next">--}}
+{{--                            <svg width="18" height="10" viewBox="0 0 18 10" fill="none" class="text-[#A0A0A0] group-hover:text-white"--}}
+{{--                                 xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                <path fill-rule="evenodd" clip-rule="evenodd"--}}
+{{--                                      d="M4.44113e-07 4.91994C4.17717e-07 5.22187 0.287871 5.4666 0.642857 5.4666L15.8051 5.4666L11.9245 9.06678C11.6734 9.28028 11.6734 9.62637 11.9245 9.83987C12.1755 10.0534 12.5826 10.0534 12.8336 9.83987L17.8117 5.30648C18.0628 5.09298 18.0628 4.7469 17.8117 4.5334L12.6688 0.160134C12.4178 -0.0533766 12.0108 -0.0533766 11.7597 0.160134C11.5087 0.373633 11.5087 0.719718 11.7597 0.933218L15.8051 4.37328L0.642857 4.37328C0.287872 4.37328 4.70509e-07 4.61801 4.44113e-07 4.91994Z" fill="currentcolor"/>--}}
+{{--                            </svg>--}}
+{{--                        </button>--}}
+{{--                    </div>--}}
+{{--                    <!-- Slider Controls End -->--}}
+{{--                </div>--}}
+{{--            </div><!--./testimonial-slider-->--}}
+{{--        </div>--}}
+
+{{--    </div>--}}
     <!-- Testimonial Section End -->
 
 

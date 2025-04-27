@@ -2,20 +2,36 @@
 
     <div class="p-3 max-xl:mb-3 overflow-hidden minfo__sidebar bg-white dark:bg-nightBlack rounded-2xl">
         <div class="mx-4 mt-12 text-center user-info lg:mx-6">
-            <a href="{{route('home.index')}}"
+            <!-- User Image -->
+            <a href="{{ route('home.index') }}"
                class="w-36 h-36 mb-2.5 block mx-auto border-6 border-platinum dark:border-[#2f2f2f] overflow-hidden rounded-full *:w-full *:h-full *:rounded-full">
-                <img src="{{asset('storage/'.$settingData['img'])}}"
-                    class="hidden dark:block "
-                    alt="{{$settingData['name']}}">
+                <img src="{{ asset('storage/' . $settingData['img']) }}"
+                     class="hidden dark:block"
+                     alt="{{ $settingData['name'] }}">
             </a>
-            <h6 class="mb-1 text-lg font-semibold text-black dark:text-white name">{{$settingData['name']}}</h6>
+
+            <!-- User Name -->
+            <h6 class="mb-1 text-lg font-semibold text-black dark:text-white name">{{ $settingData['name'] }}</h6>
+
+            <!-- User Designation -->
             <div class="leading-none cd-headline clip is-full-width">
                 <h6 class="text-sm cd-words-wrapper designation text-theme after:!bg-theme *:font-normal">
                     <b class="is-visible">Software Engineer</b>
                     <b>Backend Developer</b>
                 </h6>
             </div>
+
+            <!-- Social Icons -->
+            <div class="flex justify-center flex-wrap gap-4 mt-4">
+                <a href="{{$settingData['linkedin']}}" class="text-gray-600 hover:text-theme text-2xl" title="Linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="{{$settingData['git']}}" class="text-gray-600 hover:text-theme text-2xl" title="Git">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
         </div>
+
         <div class="pt-6 mx-4 border-t lg:mx-6 user-meta-info md:mx-7 my-7 border-platinum dark:border-metalBlack">
             <ul class="space-y-3 *:flex *:text-sm">
                 <li>
@@ -36,7 +52,6 @@
                 </li>
             </ul>
         </div>
-
 
         <div class="px-4 py-5 lg:py-6 lg:px-6 rounded-2xl md:px-8 bg-flashWhite dark:bg-metalBlack">
 

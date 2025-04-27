@@ -16,12 +16,20 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        return view('frontend.project-list');
+        $data['projects'] = \App\Models\Project::where('status',ACTIVE_STATUS)->get();
+
+        return view('frontend.project-list',$data);
     }
 
-    public function projectDetails()
+    public function projectDetails($slug)
     {
-        return view('frontend.project-details');
+        $data['projectsDetails'] = \App\Models\Project::with(['technology.skill','images'])->where('status',ACTIVE_STATUS)->where('slug',$slug)->first();
+
+        if (empty($data['projectsDetails'])){
+            abort(404);
+        }
+
+        return view('frontend.project-details',$data);
     }
 
 

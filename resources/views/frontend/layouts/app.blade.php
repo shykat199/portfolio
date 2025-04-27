@@ -26,7 +26,7 @@
 
     <!-- Site Favicon
     ================================================== -->
-    <link rel="shortcut icon" href="{{asset('assets/img/user-sidebar-thumb.png')}}" sizes="any">
+    <link rel="shortcut icon" href="{{asset('img/gears-gear-svgrepo-com.svg')}}" sizes="any">
 
     <!-- Google Fonts
     ================================================== -->
@@ -66,9 +66,8 @@
 <!-- App Preloader Start -->
 <div id="preloader">
     <div class="loader_line"></div>
-    <div
-        class="absolute w-20 h-20 transition-all delay-300 -translate-x-1/2 -translate-y-1/2 rounded-full logo top-1/2 left-1/2 bg-nightBlack border-greyBlack flex-center">
-        <img src="{{asset('assets/img/site-logo.svg')}}" alt="Minfo">
+    <div class="absolute w-20 h-20 transition-all delay-300 -translate-x-1/2 -translate-y-1/2 rounded-full logo top-1/2 left-1/2 bg-nightBlack border-greyBlack flex-center">
+        <img src="{{asset('img/gears-gear-svgrepo-com.svg')}}" alt="Minfo">
     </div>
 </div>
 <!-- App Preloader End -->
