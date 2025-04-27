@@ -37,6 +37,8 @@
                         </div>
                         <div class="dropdown-divider mt-0"></div>
 
+                        <a class="dropdown-item" href="{{route('profile')}}"><i class="las la-user fs-18 me-1 align-text-bottom"></i> Profile</a>
+
                         <a class="dropdown-item text-danger" href="{{route('logout')}}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();"><i class="las la-power-off fs-18 me-1 align-text-bottom"></i> Logout</a>
 

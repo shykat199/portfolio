@@ -27,6 +27,8 @@ Route::controller(LoginController::class)->group(function (){
 
 Route::middleware('auth')->group(function (){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+    Route::post('/profile', [DashboardController::class, 'updateProfile'])->name('update-profile');
 
     Route::controller(SkillController::class)->group(function (){
        Route::get('/skill-list','index')->name('skill-list');
