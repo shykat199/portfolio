@@ -41,7 +41,7 @@
                         </li>
                     </ul>
                     <ul class="mt-7 buttons">
-                        <li data-scroll-nav="8">
+                        <li data-scroll-nav="6">
                             <a href="#contact" class="btn-theme inline-flex items-center gap-2 bg-theme py-4 md:py-4.5 lg:px-9 px-7 rounded-4xl leading-none transition-all duration-300 hover:shadow-theme_shadow text-white font-medium text-[15px] md:text-base">
                                 <i class="fal fa-paper-plane"></i>
                                 HIRE ME

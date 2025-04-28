@@ -57,7 +57,7 @@
 
                 <a href="{{asset('storage/'.$latestResume->file)}}" target="_blank"
                    class="text-center text-sm border border-theme bg-theme flex items-center justify-center gap-2 text-white rounded-4xl py-3.5 transition duration-300 text-[15px] font-semibold hover:bg-themeHover hover:border-themeHover">
-                    DOWNLOAD CV
+                    DOWNLOAD RESUME
                     <span class="animate-bounce">
                                     <svg width="18" height="18" viewBox="0 0 15 16" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
