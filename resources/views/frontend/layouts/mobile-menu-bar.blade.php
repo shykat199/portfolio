@@ -1,9 +1,8 @@
 <div
     class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-2 px-3 bg-white/10 mobile-menu-bar sm:px-6 backdrop-blur-md xl:hidden">
     <div class="text-lg font-medium name">
-        <a href="index.html" class="flex items-center gap-2 text-black dark:text-white">
-            <img src="assets/img/site-logo.svg" alt="Minfo">
-            <span>Minfo</span>
+        <a class="flex items-center gap-2 text-black dark:text-white" href="{{route('home.index')}}">
+            <img src="{{asset('img/mobil-gears-gear-svgrepo-com.svg')}}" alt="Shykat Roy">
         </a>
     </div>
     <!-- Mobile Hamburger Menu Start -->

@@ -146,7 +146,7 @@
 
 
     <!-- Skills Section Start -->
-    <div data-scroll-index="3" id="skill">
+    <div data-scroll-index="2" id="skill">
 
         <div class="service-section relative px-5 py-8 md:p-8 bg-white dark:bg-nightBlack rounded-2xl lg:p-10 2xl:p-13">
             <div
@@ -211,6 +211,71 @@
 
     </div>
     <!-- Skills Section End -->
+
+    {{--  Services start  --}}
+    <div data-scroll-index="3" id="service">
+
+        <div class="service-section px-5 py-8 md:p-8 bg-white dark:bg-nightBlack rounded-2xl lg:p-10 2xl:p-13">
+            <div class="inline-flex items-center gap-2 px-4 py-2 text-xs tracking-wide text-black dark:text-white border lg:px-5 section-name border-platinum dark:border-greyBlack200 rounded-4xl">
+                <i class="fal fa-briefcase text-theme"></i>
+                SERVICES
+            </div>
+            <div class="mb-8 mt-7 md:my-10 section-title">
+                <h2 class="title text-[32px] md:text-4xl lg:text-5xl font-extralight text-black dark:text-white leading-1.27">
+                    My <span class="font-semibold text-theme">Services</span>
+                </h2>
+            </div>
+
+            <div class="grid gap-5 md:gap-6 service-card-wrapper sm:grid-cols-2 lg:gap-7 2xl:gap-8 *:relative *:p-5 *:transition *:duration-300 *:border *:py-7 md:*:p-7 *:border-platinum dark:*:border-metalBlack *:rounded-2xl xl:*:p-8 2xl:*:p-10">
+                <div class="card-item group hover:border-theme dark:hover:border-theme">
+                    <div class="absolute transition duration-300 md:top-10 icon right-6 top-7 md:right-8 group-hover:-rotate-45 lg:top-11">
+                        <img src="{{asset('img/code.svg')}}" alt="code">
+                    </div>
+                    <div class="text-5xl font-extrabold transition duration-300 md:text-6xl number lg:text-7xl text-greyBlack opacity-30 group-hover:opacity-100">
+                        01
+                    </div>
+                    <h4 class="mt-5 mb-4 text-xl font-medium text-black dark:text-white xl:text-2xl">
+                        Writing Code
+                    </h4>
+                </div>
+                <div class="card-item group hover:border-theme dark:hover:border-theme">
+                    <div class="absolute transition duration-300 md:top-10 icon right-6 top-7 md:right-8 group-hover:-rotate-45 lg:top-11">
+                        <img src="{{asset('img/web-dev.svg')}}" alt="web">
+                    </div>
+                    <div class="text-5xl font-extrabold transition duration-300 md:text-6xl number lg:text-7xl text-greyBlack opacity-30 group-hover:opacity-100">
+                        02
+                    </div>
+                    <h4 class="mt-5 mb-4 text-xl font-medium text-black dark:text-white xl:text-2xl">
+                        Web Development
+                    </h4>
+                </div>
+                <div class="card-item group hover:border-theme dark:hover:border-theme">
+                    <div class="absolute transition duration-300 md:top-10 icon right-6 top-7 md:right-8 group-hover:-rotate-45 lg:top-11">
+                        <img src="{{asset('img/api.svg')}}" alt="api">
+                    </div>
+                    <div class="text-5xl font-extrabold transition duration-300 md:text-6xl number lg:text-7xl text-greyBlack opacity-30 group-hover:opacity-100">
+                        03
+                    </div>
+                    <h4 class="mt-5 mb-4 text-xl font-medium text-black dark:text-white xl:text-2xl">
+                        API Development
+                    </h4>
+                </div>
+                <div class="card-item group hover:border-theme dark:hover:border-theme">
+                    <div class="absolute transition duration-300 md:top-10 icon right-6 top-7 md:right-8 group-hover:-rotate-45 lg:top-11">
+                        <img src="{{asset('img/bug.svg')}}" alt="bug">
+                    </div>
+                    <div class="text-5xl font-extrabold transition duration-300 md:text-6xl number lg:text-7xl text-greyBlack opacity-30 group-hover:opacity-100">
+                        04
+                    </div>
+                    <h4 class="mt-5 mb-4 text-xl font-medium text-black dark:text-white xl:text-2xl">
+                        Produce And Fix Bug
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {{--  Services end  --}}
 
     @php
         $workExperiences = \App\Models\WorkExperience::where('status',ACTIVE_STATUS)->get();
@@ -349,7 +414,7 @@
                                 </p>
                             </div>
                             <div class="read-details">
-                                <a href="{{route('project-list')}}"
+                                <a href="{{route('project-details',$project->slug)}}"
                                    class="inline-flex items-center gap-2 border border-theme text-theme text-sm py-3.5 px-6 rounded-3xl leading-none transition-all duration-300 hover:bg-themeHover hover:border-themeHover dark:font-medium hover:text-white">
                                     Read More
                                 </a>
@@ -372,70 +437,6 @@
     </div>
     <!-- Portfolio Section End -->
 
-    {{--  Services start  --}}
-    <div data-scroll-index="2" id="service">
-
-        <div class="service-section px-5 py-8 md:p-8 bg-white dark:bg-nightBlack rounded-2xl lg:p-10 2xl:p-13">
-            <div class="inline-flex items-center gap-2 px-4 py-2 text-xs tracking-wide text-black dark:text-white border lg:px-5 section-name border-platinum dark:border-greyBlack200 rounded-4xl">
-                <i class="fal fa-briefcase text-theme"></i>
-                SERVICES
-            </div>
-            <div class="mb-8 mt-7 md:my-10 section-title">
-                <h2 class="title text-[32px] md:text-4xl lg:text-5xl font-extralight text-black dark:text-white leading-1.27">
-                    My <span class="font-semibold text-theme">Services</span>
-                </h2>
-            </div>
-
-            <div class="grid gap-5 md:gap-6 service-card-wrapper sm:grid-cols-2 lg:gap-7 2xl:gap-8 *:relative *:p-5 *:transition *:duration-300 *:border *:py-7 md:*:p-7 *:border-platinum dark:*:border-metalBlack *:rounded-2xl xl:*:p-8 2xl:*:p-10">
-                <div class="card-item group hover:border-theme dark:hover:border-theme">
-                    <div class="absolute transition duration-300 md:top-10 icon right-6 top-7 md:right-8 group-hover:-rotate-45 lg:top-11">
-                        <img src="{{asset('img/code.svg')}}" alt="code">
-                    </div>
-                    <div class="text-5xl font-extrabold transition duration-300 md:text-6xl number lg:text-7xl text-greyBlack opacity-30 group-hover:opacity-100">
-                        01
-                    </div>
-                    <h4 class="mt-5 mb-4 text-xl font-medium text-black dark:text-white xl:text-2xl">
-                        Writing Code
-                    </h4>
-                </div>
-                <div class="card-item group hover:border-theme dark:hover:border-theme">
-                    <div class="absolute transition duration-300 md:top-10 icon right-6 top-7 md:right-8 group-hover:-rotate-45 lg:top-11">
-                        <img src="{{asset('img/web-dev.svg')}}" alt="web">
-                    </div>
-                    <div class="text-5xl font-extrabold transition duration-300 md:text-6xl number lg:text-7xl text-greyBlack opacity-30 group-hover:opacity-100">
-                        02
-                    </div>
-                    <h4 class="mt-5 mb-4 text-xl font-medium text-black dark:text-white xl:text-2xl">
-                        Web Development
-                    </h4>
-                </div>
-                <div class="card-item group hover:border-theme dark:hover:border-theme">
-                    <div class="absolute transition duration-300 md:top-10 icon right-6 top-7 md:right-8 group-hover:-rotate-45 lg:top-11">
-                        <img src="{{asset('img/api.svg')}}" alt="api">
-                    </div>
-                    <div class="text-5xl font-extrabold transition duration-300 md:text-6xl number lg:text-7xl text-greyBlack opacity-30 group-hover:opacity-100">
-                        03
-                    </div>
-                    <h4 class="mt-5 mb-4 text-xl font-medium text-black dark:text-white xl:text-2xl">
-                        API Development
-                    </h4>
-                </div>
-                <div class="card-item group hover:border-theme dark:hover:border-theme">
-                    <div class="absolute transition duration-300 md:top-10 icon right-6 top-7 md:right-8 group-hover:-rotate-45 lg:top-11">
-                        <img src="{{asset('img/bug.svg')}}" alt="bug">
-                    </div>
-                    <div class="text-5xl font-extrabold transition duration-300 md:text-6xl number lg:text-7xl text-greyBlack opacity-30 group-hover:opacity-100">
-                        04
-                    </div>
-                    <h4 class="mt-5 mb-4 text-xl font-medium text-black dark:text-white xl:text-2xl">
-                        Produce And Fix Bug
-                    </h4>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    {{--  Services end  --}}
 
 
     <!-- Testimonial Section Start -->
@@ -561,7 +562,7 @@
 
 
     <!-- Contact Section Start -->
-    <div data-scroll-index="8" id="contact">
+    <div data-scroll-index="6" id="contact">
 
         <div class="contact-section px-5 py-8 md:p-8 bg-white dark:bg-nightBlack rounded-2xl lg:p-10 2xl:p-13">
             <div
@@ -651,6 +652,12 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+
+            <div class="md:col-span-7">
+                <iframe class="w-full overflow-hidden border-10 border-platinum dark:border-greyBlack embed-map h-80 2xl:h-96 rounded-2xl"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4745.506443487842!2d89.5280721986589!3d22.829273579354975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff9abf6db51e6d%3A0x4a79c2fe31de9367!2sSonadanga%2C%20Khulna!5e0!3m2!1sen!2sbd!4v1745826324462!5m2!1sen!2sbd" aria-label="Contact Map">
+                </iframe>
             </div>
         </div>
 
