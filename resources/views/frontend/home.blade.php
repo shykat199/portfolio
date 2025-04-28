@@ -159,15 +159,51 @@
                     class="title text-[32px] md:text-4xl lg:text-5xl font-extralight text-black dark:text-white leading-1.27">
                     My <span class="font-semibold text-theme">Advantages</span>
                 </h2>
-                <p class="max-w-xl mt-4 md:mt-6 subtitle">
-                    I design products that are more than pretty. I make them shippable and usable, ttempor
-                    non mollit dolor et do aute
+                <p class="mt-4 md:mt-6 subtitle">
+                    I create simple, effective designs that are easy to use and look great. My focus is on making products that people enjoy using.
                 </p>
             </div>
 
             @php
                 $skills = \App\Models\Skill::where('status',ACTIVE_STATUS)->get();
             @endphp
+
+{{--            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 text-center">--}}
+{{--                @foreach ($skills as $skill)--}}
+{{--                    <div class="group">--}}
+{{--                        <div class="flex flex-col items-center p-2 sm:p-4 hover:transform hover:scale-105 transition-all">--}}
+{{--                            <!-- Skill Logo -->--}}
+{{--                            <div class="mb-3 w-16 h-16 sm:w-16 sm:h-16 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">--}}
+{{--                                <img src="{{ asset('storage/'.$skill->logo) }}" alt="{{ $skill->name }}" class="w-14 h-14 sm:w-10 sm:h-10">--}}
+{{--                            </div>--}}
+
+{{--                            <!-- Circular Progress -->--}}
+{{--                            <div class="relative w-20 h-20 sm:w-24 sm:h-24 overflow-visible">--}}
+{{--                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">--}}
+{{--                                    <!-- Background Circle -->--}}
+{{--                                    <circle cx="50" cy="50" r="47" stroke-width="6" fill="none"/>--}}
+{{--                                    <!-- Progress Circle -->--}}
+{{--                                    <circle cx="50" cy="50" r="47"--}}
+{{--                                            stroke="#00BC91"--}}
+{{--                                            stroke-width="6"--}}
+{{--                                            fill="none"--}}
+{{--                                            stroke-linecap="round"--}}
+{{--                                            stroke-dasharray="295"--}}
+{{--                                            stroke-dashoffset="295"--}}
+{{--                                            data-percentage="{{ $skill->percentage }}"--}}
+{{--                                            class="progress-circle"/>--}}
+{{--                                </svg>--}}
+{{--                                <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-base sm:text-lg font-semibold text-gray-800 dark:text-white">--}}
+{{--                                    {{ $skill->percentage }}%--}}
+{{--                                </span>--}}
+{{--                            </div>--}}
+
+{{--                            <!-- Skill Name -->--}}
+{{--                            <h3 class="text-base sm:text-lg font-medium text-gray-800 dark:text-white mt-2">{{ $skill->name }}</h3>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
 
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 text-center">
                 @foreach ($skills as $skill)
@@ -182,7 +218,7 @@
                             <div class="relative w-20 h-20 sm:w-24 sm:h-24 overflow-visible">
                                 <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                                     <!-- Background Circle -->
-                                    <circle cx="50" cy="50" r="47" stroke-width="6" fill="none"/>
+                                    <circle cx="50" cy="50" r="47" stroke-width="6" fill="none" stroke="#2B2C2C"/>
                                     <!-- Progress Circle -->
                                     <circle cx="50" cy="50" r="47"
                                             stroke="#00BC91"
@@ -205,6 +241,7 @@
                     </div>
                 @endforeach
             </div>
+
 
 
         </div>
