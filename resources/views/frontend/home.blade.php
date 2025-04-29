@@ -160,7 +160,7 @@
                     My <span class="font-semibold text-theme">Advantages</span>
                 </h2>
                 <p class="mt-4 md:mt-6 subtitle">
-                    I create simple, effective designs that are easy to use and look great. My focus is on making products that people enjoy using.
+                    I’ve leveled up through The series of bellow skills. 🚀💻
                 </p>
             </div>
 
