@@ -154,7 +154,7 @@
                 <i class="fal fa-graduation-cap text-theme"></i>
                 SKILLS
             </div>
-            <div class="mb-8 mt-7 md:my-10 section-title">
+            <div class="mb-5 mt-7 md:my-10 section-title">
                 <h2
                     class="title text-[32px] md:text-4xl lg:text-5xl font-extralight text-black dark:text-white leading-1.27">
                     My <span class="font-semibold text-theme">Advantages</span>
