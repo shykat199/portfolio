@@ -26,8 +26,8 @@
                 <div class="text-content pt-7 lg:pt-8 max-lg:max-w-[30rem]">
                     <h1
                         class="text-[32px] lg:text-5xl xl:text-4xl 2xl:text-5xl font-semibold text-black dark:text-white leading-1.27 lg:leading-1.27 xl:leading-1.27 2xl:leading-1.27 mb-4 lg:mb-5">
-                        I Craft The <br>
-                        <span class="text-theme">Digital Landscape</span>
+                        Backend Developer By Day, <br>
+                        <span class="text-theme">Coffee Spiller By Accident ! ☕💻</span>
                     </h1>
                     <p>{!! $settingData['about_me1'] ?? '' !!}</p>
                     <ul class="flex items-center mt-4 -mx-3 lg:mt-5 *:flex *:items-center *:mx-3 *:text-regular">
