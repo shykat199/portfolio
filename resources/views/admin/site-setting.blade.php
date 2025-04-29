@@ -214,7 +214,7 @@
         quill2.root.innerHTML = dbContent2;
 
         document.getElementById('myForm').addEventListener('submit', function(e) {
-            const content = quill.root.innerHTML;
+            const content = quill2.root.innerHTML;
             document.getElementById('contentInput2').value = content;
         });
 

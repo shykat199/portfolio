@@ -90,36 +90,36 @@
             </div>
             <div class="mt-6 section-content">
 
-                <ul class="grid mt-4 mb-10 text-sm lg:mt-6 md:grid-cols-2 gap-x-8 gap-y-3 *:flex *:items-center">
+                <ul class="grid mt-4 mb-10 text-sm lg:mt-6 md:grid-cols-2 gap-x-8 gap-y-3 [&>li]:flex [&>li]:items-center [&>li]:flex-wrap md:[&>li]:flex-nowrap">
                     <li>
-                        <span class="flex-[0_0_6rem]">Phone</span>
-                        <span class="flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white">{{$settingData['phone'] ?? ''}}</span>
+                        <span class="flex-[0_0_4rem] md:flex-[0_0_6rem]">Phone</span>
+                        <span class="flex-[0_0_1rem] md:flex-[0_0_2rem]">:</span>
+                        <span class="text-black dark:text-white break-words">{{$settingData['phone'] ?? ''}}</span>
                     </li>
                     <li>
-                        <span class="flex-[0_0_6rem]">Email</span>
-                        <span class="flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white">{{$settingData['email'] ?? ''}}</span>
+                        <span class="flex-[0_0_4rem] md:flex-[0_0_6rem]">Email</span>
+                        <span class="flex-[0_0_1rem] md:flex-[0_0_2rem]">:</span>
+                        <span class="text-black dark:text-white break-words">{{$settingData['email'] ?? ''}}</span>
                     </li>
-                    <li>
-                        <span class="flex-[0_0_6rem]">Linkedin</span>
-                        <span class="flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white">{{$settingData['linkedin'] ?? ''}}</span>
+                    <li style="margin-top: 10px;">
+                        <span class="flex-[0_0_4rem] md:flex-[0_0_6rem]">Linkedin</span>
+                        <span class="flex-[0_0_1rem] md:flex-[0_0_2rem]">:</span>
+                        <span class="text-black dark:text-white break-words">{{$settingData['linkedin'] ?? ''}}</span>
                     </li>
-                    <li>
-                        <span class="flex-[0_0_6rem]">Github</span>
-                        <span class="flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white">{{$settingData['git'] ?? ''}}</span>
+                    <li style="margin-top: 10px;">
+                        <span class="flex-[0_0_4rem] md:flex-[0_0_6rem]">Github</span>
+                        <span class="flex-[0_0_1rem] md:flex-[0_0_2rem]">:</span>
+                        <span class="text-black dark:text-white break-words">{{$settingData['git'] ?? ''}}</span>
                     </li>
-                    <li>
-                        <span class="flex-[0_0_6rem]">Language</span>
-                        <span class="flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white">{{$settingData['language'] ?? ''}}</span>
+                    <li style="margin-top: 10px;">
+                        <span class="flex-[0_0_4rem] md:flex-[0_0_6rem]">Language</span>
+                        <span class="flex-[0_0_1rem] md:flex-[0_0_2rem]">:</span>
+                        <span class="text-black dark:text-white break-words">{{$settingData['language'] ?? ''}}</span>
                     </li>
-                    <li>
-                        <span class="flex-[0_0_6rem]">Hobby</span>
-                        <span class="flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white">{{$settingData['hobby'] ?? ''}}</span>
+                    <li style="margin-top: 10px;">
+                        <span class="flex-[0_0_4rem] md:flex-[0_0_6rem]">Hobby</span>
+                        <span class="flex-[0_0_1rem] md:flex-[0_0_2rem]">:</span>
+                        <span class="text-black dark:text-white break-words">{{$settingData['hobby'] ?? ''}}</span>
                     </li>
                 </ul>
 

@@ -40,8 +40,11 @@
                                    class="text-xl font-semibold leading-normal text-black dark:text-white transition-colors line-clamp-2 2xl:text-2xl 2xl:leading-normal hover:text-theme">
                                     {{$project->title}}
                                 </a>
+                                @php
+                                    $limitedText = \Illuminate\Support\Str::limit(strip_tags($project->description), 150, '.....');
+                                @endphp
                                 <p class="mt-4 md:mt-6 subtitle">
-                                    {!! \Illuminate\Support\Str::limit($project->description,100,'...') !!}
+                                    {!! $limitedText !!}
                                 </p>
                             </div>
                             <div class="read-details">
@@ -56,29 +59,6 @@
                 @endforeach
 
             </div>
-
-            <!-- Pagination Starts  -->
-{{--            <div class="mt-10 text-center md:mt-13 flex items-center justify-center flex-wrap">--}}
-{{--                <div class="pagination flex-center gap-4 *:w-10 *:h-10 *:inline-flex *:items-center *:justify-center *:border *:border-platinum *:dark:border-greyBlack *:rounded-full *:transition-all ">--}}
-{{--                    <a href="#" class="prev hover:bg-theme hover:border-theme hover:text-white [&.active]:bg-theme [&.active]:text-white">--}}
-{{--                        <svg class="w-4" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
-{{--                            <path d="M20.5738 7.75879L0.761719 7.75879M0.761719 7.75879L7.3501 1.17041M0.761719 7.75879L7.3501 14.3472" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>--}}
-{{--                        </svg>--}}
-{{--                    </a>--}}
-{{--                    <a href="#" class="active hover:bg-theme hover:border-theme hover:text-white [&.active]:bg-theme [&.active]:text-white">1</a>--}}
-{{--                    <a href="#" class="hover:bg-theme hover:border-theme hover:text-white [&.active]:bg-theme [&.active]:text-white">2</a>--}}
-{{--                    <a href="#" class="hover:bg-theme hover:border-theme hover:text-white [&.active]:bg-theme [&.active]:text-white">--}}
-{{--                        <i class="fal fa-ellipsis-h"></i>--}}
-{{--                    </a>--}}
-{{--                    <a href="#" class="hover:bg-theme hover:border-theme hover:text-white [&.active]:bg-theme [&.active]:text-white">8</a>--}}
-{{--                    <a href="#" class="next hover:bg-theme hover:border-theme hover:text-white [&.active]:bg-theme [&.active]:text-white">--}}
-{{--                        <svg class="w-4" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
-{{--                            <path d="M1.19961 7.75879L21.0117 7.75879M21.0117 7.75879L14.4233 1.17041M21.0117 7.75879L14.4233 14.3472" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>--}}
-{{--                        </svg>--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-            <!-- Pagination Ends  -->
         </div>
     </div>
     <!-- Blog Section End -->
