@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 
-
-<!-- Mirrored from html.themestransmit.com/minfo-tailwind/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 21 Apr 2025 17:44:35 GMT -->
 <head>
     <!-- Basic Page Needs
     ================================================== -->
@@ -11,14 +9,10 @@
 
     <!-- Specific Meta
     ================================================== -->
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="keyword"
-          content="resume, cv, portfolio, vcard, responsive, retina, jquery, css3, tailwindcss, material CV, creative, designer, developer, online cv, online resume, powerful portfolio, professional, landing page">
-    <meta name="description"
-          content="Minfo vCard/Resume TailwindCSS HTML Template">
-    <meta name="author"
-          content="Themearray">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="keyword" content="resume, cv, portfolio, vcard, responsive, retina, jquery, css3, tailwindcss, material CV, creative, designer, developer, online cv, online resume, powerful portfolio, professional, landing page">
+    <meta name="description" content="Shykat Roy Web CV / Resume">
+    <meta name="author" content="Themearray">
 
     <!-- Site Title
     ================================================== -->
