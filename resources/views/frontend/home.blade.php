@@ -165,7 +165,7 @@
             </div>
 
             @php
-                $skills = \App\Models\Skill::where('status',ACTIVE_STATUS)->get();
+                $skills = \App\Models\Skill::where('status',ACTIVE_STATUS)->orderByRaw('ISNULL(rank), rank ASC')->get();
             @endphp
 
 {{--            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 text-center">--}}
@@ -406,7 +406,7 @@
     <!-- My Resume Section End -->
 
     @php
-        $projects = \App\Models\Project::where('status',ACTIVE_STATUS)->limit(3)->get();
+        $projects = \App\Models\Project::where('status',ACTIVE_STATUS)->orderByRaw('ISNULL(rank), rank ASC')->limit(3)->get();
     @endphp
 
     <!-- Portfolio Section Start -->
@@ -450,10 +450,23 @@
                                     {!! \Illuminate\Support\Str::limit($project->description,100,'...') !!}
                                 </p>
                             </div>
-                            <div class="read-details">
-                                <a href="{{route('project-details',$project->slug)}}"
+                            <div class="read-details flex items-center gap-3">
+                                <!-- Read More Button -->
+                                <a href="{{ route('project-details', $project->slug) }}"
                                    class="inline-flex items-center gap-2 border border-theme text-theme text-sm py-3.5 px-6 rounded-3xl leading-none transition-all duration-300 hover:bg-themeHover hover:border-themeHover dark:font-medium hover:text-white">
                                     Read More
+                                </a>
+
+                                <!-- GitHub Icon -->
+                                <a href="{{ $project->repo_url }}" target="_blank"
+                                   class="text-gray-700 hover:text-gray-900 text-xl transition-colors duration-300 px-3 py-2">
+                                    <i class="fab fa-github fa-lg"></i>
+                                </a>
+
+                                <!-- Live Demo Icon -->
+                                <a href="{{ $project->live_url }}" target="_blank"
+                                   class="text-green-500 hover:text-green-700 text-xl transition-colors duration-300 px-3 py-2">
+                                    <i class="fas fa-external-link-alt fa-lg"></i>
                                 </a>
                             </div>
                         </div>

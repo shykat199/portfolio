@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body p-0 bg-black auth-header-box rounded-top">
                         <div class="text-center p-3">
-                            <h4 class="mt-3 mb-1 fw-semibold text-white fs-18">Login to access admin dashboard.</h4>
+                            <h4 class="mt-3 mb-1 fw-semibold text-white fs-18">Admin Dashboard.</h4>
                         </div>
                     </div>
                     <div class="card-body">

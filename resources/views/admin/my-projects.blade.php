@@ -37,6 +37,7 @@
                                 <th>Id</th>
                                 <th>Title</th>
                                 <th>Image</th>
+                                <th>Rank</th>
                                 <th>Created Date</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -73,6 +74,7 @@
                     {data: 'id', name: 'id'},
                     {data: 'title', name: 'title'},
                     {data: 'img', name: 'img'},
+                    {data: 'rank', name: 'rank'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'status', name: 'status',orderable: false, searchable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -80,13 +82,13 @@
                 columnDefs: [
 
                     {
-                        targets: 3,
+                        targets: 4,
                         render: function(data, type, row) {
                             return type === 'display' ? moment(data).format('DD-MMM-YYYY') : data;
                         }
                     },
                     {
-                        targets: 4,
+                        targets: 5,
                         render: function(data, type, row) {
                             if (type !== 'display') return row.status;
 
@@ -152,6 +154,32 @@
 
             });
 
+        });
+
+        $(document).on('change', '.rank-select', function () {
+            let id = $(this).data('id');
+            let rank = $(this).val();
+
+            $.ajax({
+                url: `{{route('update-project-rank')}}`,
+                type: 'POST',
+                data: {
+                    id: id,
+                    rank: rank,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function (response) {
+                    if(response.status){
+                        alert('Rank updated successfully');
+                        location.reload();
+                    } else {
+                        alert('Update failed: ' + response.message);
+                    }
+                },
+                error: function (xhr) {
+                    alert('Something went wrong!');
+                }
+            });
         });
     </script>
     <script>

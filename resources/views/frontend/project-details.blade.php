@@ -29,11 +29,11 @@
                 </p>
 
                 <div class="grid gap-5 my-8 sm:grid-cols-2 md:gap-8">
-
                     @foreach($projectsDetails->images as $img)
-                        <div class="overflow-hidden rounded-xl xl:rounded-2xl">
-                            <img src="{{asset('storage/'.$img->image)}}" class="w-full"
-                                 alt=" {{$projectsDetails->title}}">
+                        <div class="aspect-[16/9] overflow-hidden rounded-xl xl:rounded-2xl">
+                            <img src="{{ asset('storage/'.$img->image) }}"
+                                 alt="{{ $projectsDetails->title }}"
+                                 class="w-full h-full object-cover">
                         </div>
                     @endforeach
                 </div>
@@ -51,6 +51,33 @@
                         </div>
                     @endforeach
                 </div>
+
+
+                <div class="project-links d-flex align-items-center gap-5 mt-10">
+
+                    @if($projectsDetails->live_url)
+                        <!-- Live Demo -->
+                        <a href="{{$projectsDetails->live_url}}" target="_blank"
+                           class="text-decoration-none text-success d-flex align-items-center gap-2">
+                            <i class="fas fa-external-link-alt fa-lg"></i>
+                            <span>Live Demo</span>
+                        </a>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @endif
+
+                    <!-- GitHub -->
+                    @if($projectsDetails->repo_url)
+                        <a href="{{$projectsDetails->repo_url}}" target="_blank" class="text-decoration-none text-dark d-flex align-items-center gap-2">
+                            <i class="fab fa-github fa-lg"></i>
+                            <span>GitHub</span>
+                        </a>
+
+                    @endif
+
+
+                </div>
+
 
             </div>
         </div>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    protected $fillable = ['title','slug','img','status','description','repo_url','live_url'];
+    protected $fillable = ['title','slug','img','status','description','repo_url','live_url','rank'];
 
     public function technology()
     {

@@ -16,7 +16,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $data['projects'] = \App\Models\Project::where('status',ACTIVE_STATUS)->get();
+        $data['projects'] = \App\Models\Project::where('status',ACTIVE_STATUS)->orderByRaw('ISNULL(rank), rank ASC')->get();
 
         return view('frontend.project-list',$data);
     }
@@ -37,7 +37,8 @@ class ProjectController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Project::orderByDesc('id');
+            $projectCount = Project::count();
+            $data = Project::orderByRaw('ISNULL(rank), rank ASC');
             return DataTables::of($data)
 
                 ->addColumn('img',function ($row){
@@ -46,6 +47,19 @@ class ProjectController extends Controller
                     }else{
                         return '<img src="'.asset('img/no-image.png').'" alt="" class="thumb-md rounded-circle">';
                     }
+                })
+
+                ->addColumn('rank', function ($row) use ($projectCount) {
+                    $rankDropDown = '<select name="rank" class="form-select rank-select" data-id="'.$row->id.'">';
+
+                    $rankDropDown .= '<option value="">Select Rank</option>';
+                    for ($i = 1; $i <= $projectCount; $i++) {
+                        $rankDropDown .= '<option value="'.$i.'" '.($row->rank === $i ? 'selected' : '').'>'.$i.'</option>';
+                    }
+
+                    $rankDropDown .= '</select>';
+
+                    return $rankDropDown;
                 })
 
                 ->addColumn('action', function ($row) {
@@ -65,7 +79,7 @@ class ProjectController extends Controller
                     return $actions;
 
                 })
-                ->rawColumns(['action','img'])
+                ->rawColumns(['action','img','rank'])
                 ->make(true);
         }
 
@@ -260,6 +274,18 @@ class ProjectController extends Controller
             return redirect()->back();
         }
 
+    }
+
+    public function updateProjectRank(Request $request)
+    {
+        $skill = Project::findOrFail($request->id);
+        $skill->rank = $request->rank;
+        $skill->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Rank updated successfully',
+        ]);
     }
 
     public function editProject($id)

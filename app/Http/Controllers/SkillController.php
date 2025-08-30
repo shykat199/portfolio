@@ -13,9 +13,9 @@ class SkillController extends Controller
 {
     public function index(Request $request)
     {
+        $skillCount = Skill::count();
         if ($request->ajax()) {
-
-            $data = Skill::orderByDesc('id');
+            $data = Skill::orderByRaw('ISNULL(rank), rank ASC');
             return DataTables::of($data)
                 ->addColumn('logo',function ($row){
                     if (!empty($row->logo)){
@@ -24,25 +24,39 @@ class SkillController extends Controller
                         return '<img src="'.asset('img/no-image.png').'" alt="" class="thumb-md rounded-circle">';
                     }
                 })
-                ->addColumn('action', function ($row) {
-                    $actions = '<div class="d-flex align-items-center">';
 
-                    $checked = $row->status == ACTIVE_STATUS ? 'checked' : '';
-                    $actions .= '<div class="form-check form-switch form-switch-success me-2">
-                                    <input class="form-check-input" type="checkbox" data-id="' . $row->id . '" onchange="toggleUserStatus(this)" id="customSwitchSuccess' . $row->id . '" ' . $checked . '>
-                                </div>';
+                ->addColumn('rank', function ($row) use ($skillCount) {
+                    $rankDropDown = '<select name="rank" class="form-select rank-select" data-id="'.$row->id.'">';
 
-                    $actions .= '<a href="javascript:void(0)" onclick="updateModal(this)" data-id="'.$row->id.'" data-name="'.$row->name.'" data-percentage="'.$row->percentage.'" data-status="'.$row->status.'" data-logo="'.(!empty($row->logo) ? asset('storage/'.$row->logo) : asset('img/no-image.png')).'" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="me-2"><i class="far fa-edit fa-2x" aria-hidden="true"></i></a>';
+                    $rankDropDown .= '<option value="">Select Rank</option>';
+                    for ($i = 1; $i <= $skillCount; $i++) {
+                        $rankDropDown .= '<option value="'.$i.'" '.($row->rank === $i ? 'selected' : '').'>'.$i.'</option>';
+                    }
 
-                    $actions .= '<i onclick="showSwal(\'passing-parameter-execute-cancel\', \'' . route('delete-skill', $row->id) . '\')" class="fa fa-trash fa-2x text-danger" aria-hidden="true"></i>';
+                    $rankDropDown .= '</select>';
 
-                    $actions .= '</div>';
-
-                    return $actions;
-
+                    return $rankDropDown;
                 })
-                ->rawColumns(['action','logo'])
-                ->make(true);
+
+                ->addColumn('action', function ($row) {
+                        $actions = '<div class="d-flex align-items-center">';
+
+                        $checked = $row->status == ACTIVE_STATUS ? 'checked' : '';
+                        $actions .= '<div class="form-check form-switch form-switch-success me-2">
+                                        <input class="form-check-input" type="checkbox" data-id="' . $row->id . '" onchange="toggleUserStatus(this)" id="customSwitchSuccess' . $row->id . '" ' . $checked . '>
+                                    </div>';
+
+                        $actions .= '<a href="javascript:void(0)" onclick="updateModal(this)" data-id="'.$row->id.'" data-name="'.$row->name.'" data-percentage="'.$row->percentage.'" data-status="'.$row->status.'" data-logo="'.(!empty($row->logo) ? asset('storage/'.$row->logo) : asset('img/no-image.png')).'" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="me-2"><i class="far fa-edit fa-2x" aria-hidden="true"></i></a>';
+
+                        $actions .= '<i onclick="showSwal(\'passing-parameter-execute-cancel\', \'' . route('delete-skill', $row->id) . '\')" class="fa fa-trash fa-2x text-danger" aria-hidden="true"></i>';
+
+                        $actions .= '</div>';
+
+                        return $actions;
+
+                    })
+                    ->rawColumns(['action','logo','rank'])
+                    ->make(true);
         }
 
         return view('admin.skill-list');
@@ -141,4 +155,17 @@ class SkillController extends Controller
 
         return response()->json(['message' => 'Status updated']);
     }
+
+    public function updateSkillRank(Request $request)
+    {
+        $skill = Skill::findOrFail($request->id);
+        $skill->rank = $request->rank;
+        $skill->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Rank updated successfully',
+        ]);
+    }
+
 }

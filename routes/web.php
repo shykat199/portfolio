@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function (){
        Route::get('/skill-list','index')->name('skill-list');
        Route::get('/delete-skill/{id}','deleteSkill')->name('delete-skill');
        Route::post('/update-skill-status','updateSkillStatus')->name('update-skill-status');
+       Route::post('/update-skill-rank','updateSkillRank')->name('update-skill-rank');
        Route::post('/add-skill','addSkill')->name('add-skill');
        Route::post('/update-skill','updateSkill')->name('update-skill');
     });
@@ -77,6 +78,7 @@ Route::middleware('auth')->group(function (){
         Route::post('/create-project','saveProject')->name('save-project');
         Route::get('/edit-project/{id}','editProject')->name('edit-project');
         Route::post('/update-project/{id}','updateProject')->name('update-project');
+        Route::post('/update-project-rank','updateProjectRank')->name('update-project-rank');
         Route::post('/update-project-status','updateProjectStatus')->name('update-project-status');
         Route::get('/delete-work-project/{id}','deleteWorkProject')->name('delete-project');
     });
