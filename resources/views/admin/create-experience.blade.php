@@ -65,6 +65,14 @@
                                         <label for="exampleInputEmail1" class="form-label">End Date</label>
                                         <input type="date" name="end_date" class="form-control" id="exampleInputEmail1" placeholder="Enter end date">
                                     </div>
+
+                                    <div class="form-check mt-5">
+                                        <input class="form-check-input" name="is_working" type="checkbox" id="flexCheckDefault">
+                                        <label class="form-label" for="flexCheckDefault">
+                                            Currently working Hear?
+                                        </label>
+                                    </div>
+
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">

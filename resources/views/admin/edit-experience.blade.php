@@ -67,6 +67,13 @@
                                         <input type="date" value="{{ \Carbon\Carbon::parse($experience->end_date)->format('Y-m-d') }}" name="end_date" class="form-control" placeholder="Enter end date">
                                     </div>
                                     @error('end_date')<span class="text-danger">{{$message}}</span>  @enderror
+
+                                    <div class="form-check mt-5">
+                                        <input class="form-check-input" name="is_working" type="checkbox" {{$experience->is_working ? 'checked':''}} id="flexCheckDefault">
+                                        <label class="form-label" for="flexCheckDefault">
+                                            Currently working Hear?
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">

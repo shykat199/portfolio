@@ -165,7 +165,12 @@
             </div>
 
             @php
-                $skills = \App\Models\Skill::where('status',ACTIVE_STATUS)->orderByRaw('ISNULL(rank), rank ASC')->get();
+
+                $skills = \App\Models\Skill::where('status', ACTIVE_STATUS)
+                    ->orderByRaw('`rank` IS NULL')
+                    ->orderByRaw('`rank` ASC')
+                    ->get();
+
             @endphp
 
 {{--            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 text-center">--}}
@@ -315,7 +320,7 @@
     {{--  Services end  --}}
 
     @php
-        $workExperiences = \App\Models\WorkExperience::where('status',ACTIVE_STATUS)->get();
+        $workExperiences = \App\Models\WorkExperience::where('status',ACTIVE_STATUS)->orderByDesc('is_working')->orderByDesc('start_date')->get();
         $educationExperiences = \App\Models\EducationalExperience::where('status',ACTIVE_STATUS)->get();
     @endphp
     <!-- My Resume Section Start -->
@@ -347,8 +352,30 @@
                                     {{$experience->company_name}}
                                 </h6>
                                 <p class="text-[13px] md:text-sm text-theme">
-                                    {{\Carbon\Carbon::parse($experience->start_date)->format('M, Y')}} - {{\Carbon\Carbon::parse($experience->end_date)->format('M, Y')}}
+                                    {{ \Carbon\Carbon::parse($experience->start_date)->format('M, Y') }} -
+                                    @if($experience->is_working)
+                                        <span
+                                            class="inline-block px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded-full">
+                                            Present
+                                        </span>
+                                    @else
+                                        {{ \Carbon\Carbon::parse($experience->end_date)->format('M, Y') }}
+                                        @php
+                                            $start = \Carbon\Carbon::parse($experience->start_date);
+                                            $end = \Carbon\Carbon::parse($experience->end_date);
+                                            $diff = $start->diff($end);
+                                        @endphp
+
+                                        <span class="text-gray-500 text-xs ml-1">
+                                            ({{ $diff->y }} yr{{ $diff->y > 1 ? 's' : '' }}
+                                                @if($diff->m > 0)
+                                                    {{ $diff->m }} mo{{ $diff->m > 1 ? 's' : '' }}
+                                                @endif
+                                            )
+                                        </span>
+                                    @endif
                                 </p>
+
                             </div>
                             <div class="md:flex-1 md:pl-16 relative md:before:content-[''] md:before:absolute md:before:-left-1 md:before:top-3 md:before:w-2 md:before:h-2 md:before:bg-theme md:before:rounded-full md:before:shadow-dots_glow">
                                 <h4 class="text-xl xl:text-2xl font-medium xl:font-medium leading-7 text-black dark:text-white mb-2.5">
@@ -406,10 +433,15 @@
     <!-- My Resume Section End -->
 
     @php
-        $projects = \App\Models\Project::where('status',ACTIVE_STATUS)->orderByRaw('ISNULL(rank), rank ASC')->limit(3)->get();
+        $projects = \App\Models\Project::where('status', ACTIVE_STATUS)
+            ->orderByRaw('`rank` IS NULL')
+            ->orderByRaw('`rank` ASC')
+            ->limit(3)
+            ->get();
     @endphp
 
-    <!-- Portfolio Section Start -->
+
+        <!-- Portfolio Section Start -->
     <div data-scroll-index="5" id="portfolio">
 
         <div class="portfolio-section px-5 py-8 md:p-8 bg-white dark:bg-nightBlack rounded-2xl lg:p-10 2xl:p-13">

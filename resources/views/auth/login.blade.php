@@ -19,10 +19,17 @@
                             </div><!--end form-group-->
                             @error('email') <span class="text-danger">{{$message}}</span>  @enderror
 
-                            <div class="form-group">
+                            <div class="form-group position-relative">
                                 <label class="form-label" for="userpassword">Password</label>
                                 <input type="password" class="form-control" name="password" id="userpassword" placeholder="Enter password">
-                            </div><!--end form-group-->
+
+                                <!-- Eye Icon -->
+                                <span class="toggle-password" toggle="#userpassword"
+                                      style="position:absolute; top:38px; right:15px; cursor:pointer;">
+                                        <i class="fa fa-eye"></i>
+                                    </span>
+                            </div>
+                            <!--end form-group-->
                             @error('password') <span class="text-danger">{{$message}}</span>  @enderror
 
                             <div class="form-group row mt-3">

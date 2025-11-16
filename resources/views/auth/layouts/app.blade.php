@@ -37,5 +37,19 @@
         </div><!--end col-->
     </div><!--end row-->
 </div><!-- container -->
+<script>
+    document.querySelector('.toggle-password').addEventListener('click', function() {
+        let input = document.querySelector(this.getAttribute('toggle'));
+
+        if (input.type === "password") {
+            input.type = "text";
+            this.innerHTML = '<i class="fa fa-eye-slash"></i>';
+        } else {
+            input.type = "password";
+            this.innerHTML = '<i class="fa fa-eye"></i>';
+        }
+    });
+
+</script>
 </body>
 </html>

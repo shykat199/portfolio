@@ -54,7 +54,7 @@ class WorkExperienceController extends Controller
             'position'=>'required',
             'status'=>'required',
             'start_date'=>'required',
-            'end_date'=>'required',
+            'end_date'=>'sometimes',
             'description'=>'required',
         ]);
 
@@ -63,7 +63,8 @@ class WorkExperienceController extends Controller
             'position'=>$request->post('position'),
             'status'=>$request->post('status'),
             'start_date'=>$request->post('start_date'),
-            'end_date'=>$request->post('end_date'),
+            'end_date'=>$request->post('end_date') ?? null,
+            'is_working'=>$request->post('is_working') == 'on' ? 1 : 0,
             'description'=>$request->post('description'),
         ]);
 
@@ -78,7 +79,7 @@ class WorkExperienceController extends Controller
             'position'=>'required',
             'status'=>'required',
             'start_date'=>'required',
-            'end_date'=>'required',
+            'end_date'=>'sometimes',
             'description'=>'required',
         ]);
 
@@ -93,7 +94,8 @@ class WorkExperienceController extends Controller
             'position'=>$request->post('position'),
             'status'=>$request->post('status'),
             'start_date'=>$request->post('start_date'),
-            'end_date'=>$request->post('end_date'),
+            'end_date'=>$request->post('end_date') ?? null,
+            'is_working'=>$request->post('is_working') == 'on' ? 1 : 0,
             'description'=>$request->post('description'),
         ]);
 
