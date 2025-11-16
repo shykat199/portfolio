@@ -94,22 +94,38 @@
                     <li>
                         <span class="flex-[0_0_4rem] md:flex-[0_0_6rem]">Phone</span>
                         <span class="flex-[0_0_1rem] md:flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white break-words">{{$settingData['phone'] ?? ''}}</span>
+                        <span class="text-black dark:text-white break-words">
+                            <a href="tle:{{ $settingData['phone'] ?? '' }}" class="text-black dark:text-white break-words hover:underline">
+                                {{ $settingData['phone'] ?? '' }}
+                            </a>
+                        </span>
                     </li>
                     <li>
                         <span class="flex-[0_0_4rem] md:flex-[0_0_6rem]">Email</span>
                         <span class="flex-[0_0_1rem] md:flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white break-words">{{$settingData['email'] ?? ''}}</span>
+                        <span class="text-black dark:text-white break-words">
+                            <a href="mailto:{{ $settingData['email'] ?? '' }}" class="text-black dark:text-white break-words hover:underline">
+                                {{ $settingData['email'] ?? '' }}
+                            </a>
+                        </span>
                     </li>
                     <li style="margin-top: 10px;">
                         <span class="flex-[0_0_4rem] md:flex-[0_0_6rem]">Linkedin</span>
                         <span class="flex-[0_0_1rem] md:flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white break-words">{{$settingData['linkedin'] ?? ''}}</span>
+                        <span class="text-black dark:text-white break-words">
+                            <a href="{{ $settingData['linkedin'] ?? '#' }}" target="_blank" class="text-black dark:text-white break-words hover:underline">
+                                    {{ $settingData['linkedin'] ?? '' }}
+                            </a>
+                        </span>
                     </li>
                     <li style="margin-top: 10px;">
                         <span class="flex-[0_0_4rem] md:flex-[0_0_6rem]">Github</span>
                         <span class="flex-[0_0_1rem] md:flex-[0_0_2rem]">:</span>
-                        <span class="text-black dark:text-white break-words">{{$settingData['git'] ?? ''}}</span>
+                        <span class="text-black dark:text-white break-words">
+                            <a href="{{ $settingData['git'] ?? '#' }}" target="_blank" class="text-black dark:text-white break-words hover:underline">
+                                    {{ $settingData['git'] ?? '' }}
+                            </a>
+                        </span>
                     </li>
                     <li style="margin-top: 10px;">
                         <span class="flex-[0_0_4rem] md:flex-[0_0_6rem]">Language</span>
@@ -685,7 +701,11 @@
                             </div>
                             <div class="flex-1">
                                 <h6 class="text-lg text-black dark:text-white">E-mail</h6>
-                                <p class="text-sm">{{$settingData['email']}}</p>
+                                <p class="text-sm">
+                                    <a href="mailto:{{ $settingData['email'] ?? '' }}" class="hover:underline">
+                                        {{ $settingData['email'] ?? '' }}
+                                    </a>
+                                </p>
                             </div>
                         </li>
                         <li>
@@ -708,7 +728,11 @@
                             </div>
                             <div class="flex-1">
                                 <h6 class="text-lg text-black dark:text-white">Phone</h6>
-                                <p class="text-sm">{{$settingData['phone']}}</p>
+                                <p class="text-sm">
+                                    <a href="tle:{{ $settingData['phone'] ?? '' }}" class="hover:underline">
+                                        {{ $settingData['phone'] ?? '' }}
+                                    </a>
+                                </p>
                             </div>
                         </li>
                     </ul>
